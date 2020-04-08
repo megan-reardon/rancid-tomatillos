@@ -21,7 +21,7 @@ class Login extends Component {
         if(response.ok === true) {
           this.fetchUserData()
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => console.log(data));
         } else {
           alert("bad credentials");
         }
@@ -40,7 +40,12 @@ class Login extends Component {
             {email: this.state.email, password: this.state.password}
         ),
       }
-    )
+    );
+  }
+
+  resetInputs = () => {
+    this.state.email = "";
+    this.state.password = "";
   }
 
   render() {
