@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getMovies } from '../../actions';
 import { Route } from 'react-router-dom';
 
+import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
 import MovieContainer from "../MovieContainer/MovieContainer"
 
@@ -18,22 +19,30 @@ class App extends Component {
   render() {
     return (
       <main>
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <MovieContainer
-            movies={this.props.movies}
-          />
-        )}
-      />
+        <Nav
+          userInfo={this.props.userInfo}
+        />
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <MovieContainer
+              movies={this.props.movies}
+            />
+          )}
+        />
       </main>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  movies: state.movies
+  movies: state.movies,
+  userInfo: {
+    id: '',
+    name: 'Ya Boi',
+    email: 'foo@yaa.com'
+  }
 });
 
 const mapDispatchToProps = (dispatch) => ({
