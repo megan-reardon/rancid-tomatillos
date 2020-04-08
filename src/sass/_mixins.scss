@@ -4,6 +4,12 @@
   background-color:$dark-green;
   color:#fff;
   text-decoration:none;
+  transition: .2s;
+
+  &:hover {
+    background-color:$light-green;
+    transition: .2s;
+  }
 }
 
 @mixin dropShadow {
