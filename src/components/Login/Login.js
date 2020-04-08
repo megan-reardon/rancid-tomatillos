@@ -14,9 +14,23 @@ class Login extends Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  fetchUserData = (e) => {
+  checkUserData = (e) => {
     e.preventDefault();
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/login',
+    this.fetchUserData()
+      .then(response => {
+        if(response.ok === true) {
+          this.fetchUserData()
+            .then(response => response.json())
+            .then(data => console.log(data))
+        } else {
+          alert("bad credentials");
+        }
+      }
+    )
+  }
+
+  fetchUserData = () => {
+    return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/login',
       {
         headers: {
           "Content-Type": "application/json"
@@ -25,9 +39,8 @@ class Login extends Component {
         body: JSON.stringify(
             {email: this.state.email, password: this.state.password}
         ),
-      })
-      .then(response => response.json())
-      .then(data => console.log(data));
+      }
+    )
   }
 
   render() {
@@ -50,7 +63,7 @@ class Login extends Component {
           onChange={this.updateHandle}
         />
         <Link to={"/"}>
-          <button onClick={this.fetchUserData}>Login</button>
+          <button onClick={this.checkUserData}>Login</button>
         </Link>
       </form>
     </main>)
