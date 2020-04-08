@@ -27,6 +27,12 @@ class App extends Component {
           />
         )}
       />
+      <Route
+        path="/login"
+        render={() => (
+          <Login/>
+        )}
+      />
       </main>
     )
   }
