@@ -1,0 +1,17 @@
+@mixin buttonStyle {
+  padding:10px 30px;
+  border-radius:4px;
+  background-color:$dark-green;
+  color:#fff;
+  text-decoration:none;
+  transition: .2s;
+
+  &:hover {
+    background-color:$light-green;
+    transition: .2s;
+  }
+}
+
+@mixin dropShadow {
+  box-shadow: 0 0 8px 1px rgba(0,0,0,.17);
+}
