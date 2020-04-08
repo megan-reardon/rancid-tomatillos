@@ -33,4 +33,4 @@ describe('MovieCard', () => {
     expect(altText).toBeInTheDocument();
   });
 
-})
+});
