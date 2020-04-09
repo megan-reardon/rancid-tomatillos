@@ -1,6 +1,10 @@
 .movie-details-card {
-  width: 30em;
-  margin: 2em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 55em;
+  background-position: center;
+  background-size: cover;
+  opacity: .6;
 }
 
 .img-background {
@@ -9,5 +13,14 @@
 }
 
 .img-poster {
-  width: 20em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 20em;
+  }
+}
+
+.movie-details {
+
 }
