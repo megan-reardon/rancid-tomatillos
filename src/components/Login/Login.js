@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, Link, Redirect, withRouter } from "react-router-dom";
+import { Router, withRouter } from "react-router-dom";
 
 
 import { login } from '../../actions';
@@ -16,7 +16,6 @@ class Login extends Component {
   }
 
   handleUpdate = e => {
-    // run validate form
     this.validateForm();
     this.setState({[e.target.name]: e.target.value})
   }
@@ -31,15 +30,11 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
-              console.log(this.props);
               this.props.history.push('/');
             })
         } else {
           return response.json()
             .then(data => this.setState({ error:data.error }))
-            // .then(data => this.state.error = 'The email or password entered was invalid')
-            // .catch(err => console.log(err.message))
-          // alert("bad credentials");
         }
       }
     );
@@ -93,16 +88,10 @@ class Login extends Component {
           placeholder="enter password"
           onChange={this.handleUpdate}
         />
-<<<<<<< HEAD
           <button
             onClick={this.checkUserData}
             disabled={this.validateForm()}
           >Login</button>
-=======
-        <Link to="/">
-          <button onClick={this.checkUserData}>Submit Login</button>
-        </Link>
->>>>>>> master
       </form>
     </main>)
   }
