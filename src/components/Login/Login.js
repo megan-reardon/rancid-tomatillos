@@ -82,14 +82,14 @@ class Login extends Component {
         <input
           type="text"
           name="email"
-          placeholder="enter email"
+          placeholder="Enter email"
           onChange={this.handleUpdate}
         />
         <label htmlFor="password">Password</label>
         <input
           type="text"
           name="password"
-          placeholder="enter password"
+          placeholder="Enter password"
           onChange={this.handleUpdate}
         />
         <button

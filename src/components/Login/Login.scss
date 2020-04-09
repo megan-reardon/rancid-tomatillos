@@ -8,10 +8,11 @@
   form {
     @include dropShadow;
     width:100%;
-    max-width:450px;
-    padding:3rem 6rem;
+    max-width:350px;
+    padding:30px 50px;
     display: flex;
-    flex-flow:column;
+    flex-flow:wrap;
+    flex-direction:column;
     text-align: center;
 
     h1{
@@ -35,12 +36,13 @@
       border-bottom:1px solid $light-gray;
       margin-bottom:20px;
       padding:5px 10px;
-      font-size:1.125rem;
+      font-size:1.025rem;
     }
 
     button {
       @include buttonStyle;
-      display: block;
+      margin-top:20px;
+      align-self:center;
     }
   }
 }

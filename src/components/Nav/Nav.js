@@ -11,8 +11,7 @@ const Nav = ({ userInfo, history, logout }) => {
   const welcomeMessage = userInfo.name ? `Welcome, ${userInfo.name}!` : '';
 
   const handleLogout = (id) => {
-    logout(id)
-    history.push('/');
+    userInfo.id && logout(id);
   }
 
   const loginToPath = !userInfo.id ? "/login" : "/";
@@ -30,7 +29,7 @@ const Nav = ({ userInfo, history, logout }) => {
           <Link
             to={loginToPath}
             className="login-button"
-            onClick={userInfo.id && (() => handleLogout(userInfo.id))}
+            onClick={() => handleLogout(userInfo.id)}
             >
             {loginText}
           </Link>
