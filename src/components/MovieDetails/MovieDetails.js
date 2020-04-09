@@ -18,6 +18,10 @@ class MovieDetails extends Component {
         <p>{overview}</p>
         <img className="img-background" src={backdrop_path} alt={"image for " + title}/>
         <img className="img-poster" src={poster_path} alt={"image for " + title}/>
+        <form className="submit-rating-form">
+          <input type="number" min="1" max="10" placeholder="Enter rating (1-10)" required/>
+          <button className="submit-rating" type="submit">SUBMIT</button>
+        </form>
       </article>
     )
   }
