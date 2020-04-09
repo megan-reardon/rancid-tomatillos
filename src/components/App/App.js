@@ -35,7 +35,7 @@ class App extends Component {
       <Route
         path="/login"
         render={() => (
-          <Login/>
+          <Login userInfo={this.props.userInfo}/>
         )}
       />
       <Route
@@ -56,8 +56,9 @@ const mapStateToProps = (state) => ({
   movies: state.movies,
   userInfo: {
     id: '',
-    name: 'Ya Boi',
-    email: 'foo@yaa.com'
+    name: '',
+    email: '',
+    error: ''
   }
 });
 
