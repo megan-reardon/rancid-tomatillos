@@ -13,8 +13,8 @@ class MovieDetails extends Component {
     return (
       <article className="movie-details-card">
         <h1>{title}</h1>
-        <h3>{average_rating}</h3>
-        <h3>{release_date}</h3>
+        <h3>Average rating: {average_rating}</h3>
+        <h3>Release date: {release_date}</h3>
         <p>{overview}</p>
         <img className="img-background" src={backdrop_path} alt={"image for " + title}/>
         <img className="img-poster" src={poster_path} alt={"image for " + title}/>
