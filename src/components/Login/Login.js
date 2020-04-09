@@ -60,7 +60,12 @@ class Login extends Component {
 
   validateForm = () => {
     const { email, password } = this.state;
-    const validEmail = email.includes('@') && email.includes('.io')
+    const validEmailRegex = RegExp(
+      // eslint-disable-next-line
+      /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
+    );
+    
+    const validEmail = email != '' && validEmailRegex.test(email);
     const validPassword = password !== '';
 
     if (validEmail && validPassword) {
