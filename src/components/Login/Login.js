@@ -57,7 +57,7 @@ class Login extends Component {
   validateForm = () => {
     const { email, password } = this.state;
     const validEmail = email.includes('@') && email.includes('.io')
-    const validPassword = password.includes('password')
+    const validPassword = password !== '';
 
     if (validEmail && validPassword) {
       return false;
@@ -88,10 +88,10 @@ class Login extends Component {
           placeholder="enter password"
           onChange={this.handleUpdate}
         />
-          <button
-            onClick={this.checkUserData}
-            disabled={this.validateForm()}
-          >Login</button>
+        <button
+          onClick={this.checkUserData}
+          disabled={this.validateForm()}
+        >Login</button>
       </form>
     </main>)
   }
