@@ -93,10 +93,16 @@ class Login extends Component {
           placeholder="enter password"
           onChange={this.handleUpdate}
         />
+<<<<<<< HEAD
           <button
             onClick={this.checkUserData}
             disabled={this.validateForm()}
           >Login</button>
+=======
+        <Link to="/">
+          <button onClick={this.checkUserData}>Submit Login</button>
+        </Link>
+>>>>>>> master
       </form>
     </main>)
   }
