@@ -1,17 +1,18 @@
 *,
 *:after,
 *:before {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
   margin:0;
   padding:0;
-  box-sizing: border-box;
 }
 
 main {
   width:100%;
 
   .margin-wrap {
-    width:100%;
-    max-width:1500px;
     margin:0 auto;
+    max-width:1500px;
+    width:100%;
   }
 }
