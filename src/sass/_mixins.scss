@@ -9,6 +9,12 @@
   &:hover {
     background-color:$light-green;
     transition: .2s;
+    cursor:pointer;
+  }
+
+  &:disabled {
+    background-color:$light-gray;
+    cursor: no-drop;
   }
 }
 

@@ -34,10 +34,14 @@ class Login extends Component {
             })
         } else {
           return response.json()
-            .then(data => this.setState({ error:data.error }))
+            .then(data => {
+              this.setState({ error:data.error })
+              console.log(data.error);
+            })
         }
       }
-    );
+    )
+    .catch(err => console.log(err))
   }
 
   fetchUserData = () => {
@@ -70,7 +74,7 @@ class Login extends Component {
     const isEnabled = this.validateForm();
 
     return(
-    <main className="login-container">
+    <section className="login-container">
       <form>
         <h1>Login</h1>
         <span className="error">{this.state.error}</span>
@@ -93,7 +97,7 @@ class Login extends Component {
           disabled={this.validateForm()}
         >Login</button>
       </form>
-    </main>)
+    </section>)
   }
 }
 

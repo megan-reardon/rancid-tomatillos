@@ -5,6 +5,7 @@ const MovieContainer = ({ movies }) => {
   const movieList = movies.map(movie => {
     return (
       <MovieCard
+        key={movie.id}
         id={movie.id}
         title={movie.title}
         backdrop={movie.backdrop_path}

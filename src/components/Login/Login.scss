@@ -1,0 +1,46 @@
+.login-container {
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:-100px;
+
+  form {
+    @include dropShadow;
+    width:100%;
+    max-width:450px;
+    padding:3rem 6rem;
+    display: flex;
+    flex-flow:column;
+    text-align: center;
+
+    h1{
+      margin-bottom:20px;
+    }
+
+    span  {
+      color:$orange;
+      font-size:14px;
+      margin-bottom:5px;
+      padding:5px 10px;
+    }
+
+    label {
+      display:none;
+    }
+
+    input {
+      text-align:center;
+      border:0;
+      border-bottom:1px solid $light-gray;
+      margin-bottom:20px;
+      padding:5px 10px;
+      font-size:1.125rem;
+    }
+
+    button {
+      @include buttonStyle;
+      display: block;
+    }
+  }
+}
