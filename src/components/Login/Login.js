@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, Link, Redirect } from "react-router-dom";
+import { Router, Link, Redirect, withRouter } from "react-router-dom";
 
 
 import { login } from '../../actions';
@@ -31,11 +31,9 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
-
-              // console.log(history);
-              // this.props.history.go('/');
+              console.log(this.props);
+              this.props.history.push('/');
             })
-
         } else {
           return response.json()
             .then(data => this.setState({ error:data.error }))
@@ -108,4 +106,4 @@ const mapDispatchToProps = (dispatch) => ({
   loginUser: userInfo => dispatch( login(userInfo) )
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(withRouter(Login));
