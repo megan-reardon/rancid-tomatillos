@@ -9,7 +9,7 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: 'null'
+      password: '',
     }
   }
 
@@ -20,19 +20,18 @@ class Login extends Component {
   }
 
   checkUserData = (e) => {
-    // const { userInfo } = this.props;
-    e.preventDefault();
+    const { loginUser } = this.props;
+
     this.fetchUserData()
       .then(response => {
         if(response.ok === true) {
           return response.json()
-            .then(info => this.props.loginUser(info.user));
+            .then(info => loginUser(info.user));
         } else {
           console.log(response);
           alert("bad credentials");
           return
         }
-        return;
       }
     )
   }
