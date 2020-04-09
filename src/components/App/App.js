@@ -19,18 +19,24 @@ class App extends Component {
   render() {
     return (
       <main>
-        <Nav
-          userInfo={this.props.userInfo}
-        />
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <MovieContainer
-              movies={this.props.movies}
-            />
-          )}
-        />
+      <Nav
+        userInfo={this.props.userInfo}
+      />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <MovieContainer
+            movies={this.props.movies}
+          />
+        )}
+      />
+      <Route
+        path="/login"
+        render={() => (
+          <Login/>
+        )}
+      />
       </main>
     )
   }
