@@ -9,12 +9,10 @@ import logo from '../../svgs/rancid-tomatillos-logo.svg';
 const Nav = ({ userInfo, history, logout }) => {
   const loginText = userInfo.id ? 'Logout' : 'Login';
   const welcomeMessage = userInfo.name ? `Welcome, ${userInfo.name}!` : '';
-
+  const loginToPath = !userInfo.id ? "/login" : "/";
   const handleLogout = (id) => {
     userInfo.id && logout(id);
   }
-
-  const loginToPath = !userInfo.id ? "/login" : "/";
 
   return (
     <header>
