@@ -47,7 +47,8 @@ const mapStateToProps = (state) => ({
   userInfo: {
     id: '',
     name: '',
-    email: ''
+    email: '',
+    error: ''
   }
 });
 

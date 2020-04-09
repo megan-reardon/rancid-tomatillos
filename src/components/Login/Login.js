@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, Link, Redirect } from "react-router-dom";
 
+
 import { login } from '../../actions';
 
 class Login extends Component {
@@ -30,15 +31,12 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
-              // const { history } = this.props;
-              // this.props.history.push('/')
+
+              // console.log(history);
+              // this.props.history.go('/');
             })
-            // .then(data => console.log(data))
-          //   .then(info => console.log(info))
-            // .then(res => true)
 
         } else {
-          // console.log(response);
           return response.json()
             .then(data => this.setState({ error:data.error }))
             // .then(data => this.state.error = 'The email or password entered was invalid')
