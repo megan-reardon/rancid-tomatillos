@@ -1,42 +1,42 @@
 .movie-card {
   height: 12em;
-  width: 20em;
   margin: 2em auto;
   overflow: hidden;
   padding: 0;
+  width: 20em;
   img {
-    object-fit: cover;
     height: 12em;
-    width: 20em;
     margin: 0;
+    object-fit: cover;
     position: absolute;
+    width: 20em;
   }
   h1 {
-    font-size: 1.5em;
     color: $dark-green;
+    font-size: 1.5em;
   }
   h2 {
-    font-size: 1em;
     color: $orange;
+    font-size: 1em;
   }
   &:hover {
     @include dropShadow;
     cursor: pointer;
   }
   &:hover .movie-info-container {
-    height: 4em;
     bottom: -8em;
+    height: 4em;
   }
 }
 
 .movie-info-container {
   background: rgba(255, 255, 255, 0.85);
-  width: 20em;
-  margin: 0;
   bottom: -12em;
-  position: relative;
-  overflow: hidden;
   height: 0;
-  transition: .5s ease;
+  margin: 0;
+  overflow: hidden;
   padding: 3%;
+  position: relative;
+  transition: .5s ease;
+  width: 20em;
 }
