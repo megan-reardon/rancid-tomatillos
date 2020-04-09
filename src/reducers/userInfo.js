@@ -7,7 +7,7 @@ const emptyUserInfo = {
 
 export const userInfo = (state = emptyUserInfo, action) => {
   // const {id, name, email, password } = action.userInfo;
-  console.log(action.userInfo);
+  // console.log(action.userInfo);
   switch (action.type) {
     case 'LOGIN':
       return state = action.userInfo;

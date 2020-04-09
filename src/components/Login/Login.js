@@ -25,16 +25,8 @@ class Login extends Component {
     this.fetchUserData()
       .then(response => {
         if(response.ok === true) {
-          let userData = response.json();
-          console.log('1', userData);
-          const { id, name, email, password } = userData;
-
-          this.props.loginUser({
-            id,
-            name,
-            email,
-            password
-          })
+          return response.json()
+            .then(info => this.props.loginUser(info.user));
         } else {
           console.log(response);
           alert("bad credentials");
