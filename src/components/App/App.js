@@ -5,7 +5,8 @@ import { Route } from 'react-router-dom';
 
 import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
-import MovieContainer from "../MovieContainer/MovieContainer"
+import MovieContainer from "../MovieContainer/MovieContainer";
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 class App extends Component {
 
@@ -35,6 +36,12 @@ class App extends Component {
         path="/login"
         render={() => (
           <Login/>
+        )}
+      />
+      <Route
+        path="/movies/7"
+        render={() => (
+          <MovieDetails/>
         )}
       />
       </main>
