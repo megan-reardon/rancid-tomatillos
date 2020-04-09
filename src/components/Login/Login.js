@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Router, Link, Redirect } from "react-router-dom";
 
 import { login } from '../../actions';
 
@@ -10,6 +10,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      error: ''
     }
   }
 
@@ -20,20 +21,32 @@ class Login extends Component {
   }
 
   checkUserData = (e) => {
+    e.preventDefault();
     const { loginUser } = this.props;
 
     this.fetchUserData()
       .then(response => {
         if(response.ok === true) {
           return response.json()
-            .then(info => loginUser(info.user));
+            .then(info => loginUser(info.user))
+            .then(data => {
+              // const { history } = this.props;
+              // this.props.history.push('/')
+            })
+            // .then(data => console.log(data))
+          //   .then(info => console.log(info))
+            // .then(res => true)
+
         } else {
-          console.log(response);
-          alert("bad credentials");
-          return
+          // console.log(response);
+          return response.json()
+            .then(data => this.setState({ error:data.error }))
+            // .then(data => this.state.error = 'The email or password entered was invalid')
+            // .catch(err => console.log(err.message))
+          // alert("bad credentials");
         }
       }
-    )
+    );
   }
 
   fetchUserData = () => {
@@ -69,6 +82,7 @@ class Login extends Component {
     <main className="login-container">
       <form>
         <h1>Login</h1>
+        <span className="error">{this.state.error}</span>
         <label htmlFor="email">Email</label>
         <input
           type="text"
@@ -83,12 +97,10 @@ class Login extends Component {
           placeholder="enter password"
           onChange={this.handleUpdate}
         />
-        <Link to="/">
           <button
             onClick={this.checkUserData}
             disabled={this.validateForm()}
           >Login</button>
-        </Link>
       </form>
     </main>)
   }
