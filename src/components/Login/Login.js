@@ -1,29 +1,46 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 
+import { login } from '../../actions';
+
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      email: null,
-      password: null
+      email: '',
+      password: 'null'
     }
   }
 
   handleUpdate = e => {
+    // run validate form
+    this.validateForm();
     this.setState({[e.target.name]: e.target.value})
   }
 
   checkUserData = (e) => {
+    // const { userInfo } = this.props;
     e.preventDefault();
     this.fetchUserData()
       .then(response => {
         if(response.ok === true) {
-          return response.json()
-            .then(data => console.log(data));
+          let userData = response.json();
+          console.log('1', userData);
+          const { id, name, email, password } = userData;
+
+          this.props.loginUser({
+            id,
+            name,
+            email,
+            password
+          })
         } else {
+          console.log(response);
           alert("bad credentials");
+          return
         }
+        return;
       }
     )
   }
@@ -42,7 +59,21 @@ class Login extends Component {
     );
   }
 
+  validateForm = () => {
+    const { email, password } = this.state;
+    const validEmail = email.includes('@') && email.includes('.io')
+    const validPassword = password.includes('password')
+
+    if (validEmail && validPassword) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render() {
+    const isEnabled = this.validateForm();
+
     return(
     <main className="login-container">
       <form>
@@ -62,11 +93,18 @@ class Login extends Component {
           onChange={this.handleUpdate}
         />
         <Link to="/">
-          <button onClick={this.checkUserData}>Login</button>
+          <button
+            onClick={this.checkUserData}
+            disabled={this.validateForm()}
+          >Login</button>
         </Link>
       </form>
     </main>)
   }
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => ({
+  loginUser: userInfo => dispatch( login(userInfo) )
+})
+
+export default connect(null, mapDispatchToProps)(Login);
