@@ -1,5 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import logo from '../../svgs/rancid-tomatillos-logo.svg';
@@ -26,4 +27,8 @@ const Nav = ({ userInfo }) => {
   )
 }
 
-export default Nav;
+const mapStateToProps = ({ userInfo }) => ({
+  userInfo
+})
+
+export default connect(mapStateToProps)(Nav);
