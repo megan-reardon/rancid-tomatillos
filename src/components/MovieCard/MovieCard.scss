@@ -1,7 +1,7 @@
 .movie-card {
   height: 12em;
   width: 20em;
-  margin: 2em;
+  margin: 2em auto;
   overflow: hidden;
   padding: 0;
   img {
@@ -17,6 +17,7 @@
   }
   h2 {
     font-size: 1em;
+    color: $orange;
   }
   &:hover {
     @include dropShadow;
