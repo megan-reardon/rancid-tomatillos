@@ -5,7 +5,8 @@ import { Route } from 'react-router-dom';
 
 import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
-import MovieContainer from "../MovieContainer/MovieContainer"
+import MovieContainer from "../MovieContainer/MovieContainer";
+import MovieDetails from '../MovieDetails/MovieDetails';
 
 class App extends Component {
 
@@ -36,6 +37,15 @@ class App extends Component {
         render={() => (
           <Login userInfo={this.props.userInfo}/>
         )}
+      />
+      <Route
+        path="/movies/:id/" exact
+        render={({ match }) => {
+          const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
+          return <MovieDetails
+                  {...selectedMovie}
+                 />
+        }}
       />
       </main>
     )

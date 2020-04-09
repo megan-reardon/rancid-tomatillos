@@ -1,13 +1,16 @@
-import React from "react"
+import React from "react";
+import { Link } from 'react-router-dom';
 
-const MovieCard = (props) => {
+const MovieCard = ({ id, title, backdrop, averageRating }) => {
   return (
     <article className="movie-card">
-      <img src={props.movieInfo.backdrop_path} alt={"image for " + props.movieInfo.title}/>
-      <div className="movie-info-container">
-        <h1>{props.movieInfo.title}</h1>
-        <h2>Average Rating: {props.movieInfo.average_rating}/10</h2>
+      <Link to={`/movies/${id}`}>
+        <img src={backdrop} alt={"image for " + title}/>
+        <div className="movie-info-container">
+        <h1>{title}</h1>
+        <h2>Average Rating: {averageRating}</h2>
       </div>
+      </Link>
     </article>
   )
 }

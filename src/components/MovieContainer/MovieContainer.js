@@ -5,7 +5,10 @@ const MovieContainer = ({ movies }) => {
   const movieList = movies.map(movie => {
     return (
       <MovieCard
-        movieInfo={movie}
+        id={movie.id}
+        title={movie.title}
+        backdrop={movie.backdrop_path}
+        averageRating={movie.average_rating}
       />)
   })
 
