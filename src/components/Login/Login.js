@@ -10,7 +10,7 @@ class Login extends Component {
     }
   }
 
-  updateHandle = e => {
+  handleUpdate = e => {
     this.setState({[e.target.name]: e.target.value})
   }
 
@@ -19,8 +19,7 @@ class Login extends Component {
     this.fetchUserData()
       .then(response => {
         if(response.ok === true) {
-          this.fetchUserData()
-            .then(response => response.json())
+          return response.json()
             .then(data => console.log(data));
         } else {
           alert("bad credentials");
@@ -43,11 +42,6 @@ class Login extends Component {
     );
   }
 
-  resetInputs = () => {
-    this.state.email = "";
-    this.state.password = "";
-  }
-
   render() {
     return(
     <main className="login-container">
@@ -58,16 +52,16 @@ class Login extends Component {
           type="text"
           name="email"
           placeholder="enter email"
-          onChange={this.updateHandle}
+          onChange={this.handleUpdate}
         />
         <label htmlFor="password">Password</label>
         <input
           type="text"
           name="password"
           placeholder="enter password"
-          onChange={this.updateHandle}
+          onChange={this.handleUpdate}
         />
-        <Link to={"/"}>
+        <Link to="/">
           <button onClick={this.checkUserData}>Login</button>
         </Link>
       </form>
