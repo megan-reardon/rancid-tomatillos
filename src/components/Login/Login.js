@@ -62,7 +62,7 @@ class Login extends Component {
           onChange={this.handleUpdate}
         />
         <Link to="/">
-          <button onClick={this.checkUserData}>Login</button>
+          <button onClick={this.checkUserData}>Submit Login</button>
         </Link>
       </form>
     </main>)
