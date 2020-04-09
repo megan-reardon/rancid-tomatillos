@@ -42,7 +42,6 @@ class App extends Component {
         path="/movies/:id/" exact
         render={({ match }) => {
           const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
-          console.log(selectedMovie)
           return <MovieDetails
                   {...selectedMovie}
                  />
