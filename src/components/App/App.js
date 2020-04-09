@@ -39,10 +39,14 @@ class App extends Component {
         )}
       />
       <Route
-        path="/movies/7"
-        render={() => (
-          <MovieDetails/>
-        )}
+        path="/movies/:id/" exact
+        render={({ match }) => {
+          const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
+          return <MovieDetails
+                  {...selectedMovie}
+                 />
+                 console.log(selectedMovie)
+        }}
       />
       </main>
     )
