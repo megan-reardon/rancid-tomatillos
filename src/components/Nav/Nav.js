@@ -7,6 +7,7 @@ import logo from '../../svgs/rancid-tomatillos-logo.svg';
 
 const Nav = ({ userInfo }) => {
   let loginText = userInfo.id ? 'Logout' : 'Login';
+  let welcomeMessage = userInfo.name ? `Welcome, ${userInfo.name}!` : '';
 
   return (
     <header>
@@ -16,12 +17,15 @@ const Nav = ({ userInfo }) => {
             <img src={logo} alt="Rancid Tomatillos Logo" />
           </Link>
         </div>
-        <Link
-          to="/login"
-          className="login-button"
-        >
-          {loginText}
-        </Link>
+        <div className="login-wrap">
+          <span>{welcomeMessage}</span>
+          <Link
+            to="/login"
+            className="login-button"
+            >
+            {loginText}
+          </Link>
+        </div>
       </div>
     </header>
   )
