@@ -77,7 +77,6 @@ class Login extends Component {
 
   render() {
     const isEnabled = this.validateForm();
-
     return(
     <section className="login-container">
       <form>
