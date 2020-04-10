@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { submitRating } from '../../actions';
+import { submitRating, getRatings } from '../../actions';
 import { connect } from 'react-redux';
 
 class MovieDetails extends Component {
@@ -8,6 +8,10 @@ class MovieDetails extends Component {
     this.state = {
       userRating: null
     }
+  }
+
+  componentDidMount = () => {
+    this.fetchRatings()
   }
 
   checkIfLoggedIn = (e) => {
@@ -25,6 +29,14 @@ class MovieDetails extends Component {
 
   updateRating = (e) => {
     this.setState({userRating: parseInt(e.target.value)})
+  }
+
+  fetchRatings = () => {
+    //gets all ratings for this user in the API and update movieRatings
+    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings')
+      .then(response => response.json())
+      .then(data => console.log(data))
+      // .then(data => this.props.fetchUserRatings(data.ratings))
   }
 
   postNewRating = (rating) => {
@@ -61,7 +73,8 @@ class MovieDetails extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  rateMovie: rating => dispatch( submitRating(rating) )
+  rateMovie: rating => dispatch( submitRating(rating) ),
+  fetchUserRatings: allRatings => dispatch( getRatings(allRatings) )
 })
 
 const mapStateToProps = (state) => ({

@@ -12,3 +12,8 @@ export const submitRating = (rating) => ({
   type: 'SUBMIT_RATING',
   rating
 })
+
+export const getRatings = (allRatings) => ({
+  type: 'GET_RATINGS',
+  allRatings
+})
