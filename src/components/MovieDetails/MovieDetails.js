@@ -23,6 +23,7 @@ class MovieDetails extends Component {
     this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating })
       .then(response => response.json())
       .then(data => rateMovie(data))
+      //could replace lines 24-25 with fetch and update store
 
     // if no - display error
   }
@@ -38,6 +39,7 @@ class MovieDetails extends Component {
       .then(data => console.log(data))
       // .then(data => this.props.fetchUserRatings(data.ratings))
   }
+  //this needs to move! have fetch happen after login on initial render and update store with allRatings
 
   postNewRating = (rating) => {
     return fetch('https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings',
