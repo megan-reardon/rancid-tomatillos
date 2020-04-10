@@ -11,9 +11,10 @@ class MovieDetails extends Component {
   render() {
     const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props
     return (
-      <article className="movie-details-card" style={{ backgroundImage: `url(${backdrop_path})`}}>
+      <article className="movie-details-card" >
         <section className="img-poster">
           <img src={poster_path} alt={"image for " + title}/>
+          <img src={backdrop_path} alt={"image for " + title}/>
         </section>
         <section className="movie-details">
           <section>
