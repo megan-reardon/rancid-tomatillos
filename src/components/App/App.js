@@ -20,9 +20,7 @@ class App extends Component {
   render() {
     return (
       <main>
-      <Nav
-        userInfo={this.props.userInfo}
-      />
+      <Nav />
       <Route
         exact
         path="/"
@@ -54,12 +52,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  userInfo: {
-    id: '',
-    name: '',
-    email: '',
-    error: ''
-  }
+  userInfo: state.userInfo
 });
 
 const mapDispatchToProps = (dispatch) => ({

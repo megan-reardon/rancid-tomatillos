@@ -34,10 +34,14 @@ class Login extends Component {
             })
         } else {
           return response.json()
-            .then(data => this.setState({ error:data.error }))
+            .then(data => {
+              this.setState({ error:data.error })
+              console.log(data.error);
+            })
         }
       }
-    );
+    )
+    .catch(err => console.log(err))
   }
 
   fetchUserData = () => {
@@ -56,8 +60,13 @@ class Login extends Component {
 
   validateForm = () => {
     const { email, password } = this.state;
-    const validEmail = email.includes('@') && email.includes('.io')
-    const validPassword = password.includes('password')
+    const validEmailRegex = RegExp(
+      // eslint-disable-next-line
+      /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
+    );
+    
+    const validEmail = email != '' && validEmailRegex.test(email);
+    const validPassword = password !== '';
 
     if (validEmail && validPassword) {
       return false;
@@ -70,7 +79,7 @@ class Login extends Component {
     const isEnabled = this.validateForm();
 
     return(
-    <main className="login-container">
+    <section className="login-container">
       <form>
         <h1>Login</h1>
         <span className="error">{this.state.error}</span>
@@ -78,22 +87,22 @@ class Login extends Component {
         <input
           type="text"
           name="email"
-          placeholder="enter email"
+          placeholder="Enter email"
           onChange={this.handleUpdate}
         />
         <label htmlFor="password">Password</label>
         <input
           type="text"
           name="password"
-          placeholder="enter password"
+          placeholder="Enter password"
           onChange={this.handleUpdate}
         />
-          <button
-            onClick={this.checkUserData}
-            disabled={this.validateForm()}
-          >Login</button>
+        <button
+          onClick={this.checkUserData}
+          disabled={this.validateForm()}
+        >Login</button>
       </form>
-    </main>)
+    </section>)
   }
 }
 
