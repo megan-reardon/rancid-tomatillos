@@ -1,18 +1,33 @@
+.movie-details {
+  margin: 10em 3em 0em 3em;
+  section:first-child {
+    h1 {
+      font-size: 3em;
+    }
+  }
+  section:nth-child(2) {
+    margin-top: 1.5em;
+  }
+  section:nth-child(3) {
+    font-size: 1.5em;
+    margin-top: 3em;
+  }
+}
+
 .movie-details-card {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  height: 50em;
-  background-position: center;
-  background-size: cover;
 }
 
-.img-poster {
+.movie-images {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1em;
+  margin-top: 7em;
   img:first-child {
     width: 20em;
+    margin: .5em 0em;
   }
   img:nth-child(2) {
     position: absolute;
@@ -26,19 +41,5 @@
     right: 0;
     z-index: -1;
     opacity: 0.15;
-  }
-}
-
-.movie-details {
-  display: grid;
-  height: 25em;
-  margin: 12em 2em 0em 2em;
-  section:first-child {
-    h1 {
-      font-size: 3em;
-    }
-  }
-  section:nth-child(3) {
-    font-size: 1.5em;
   }
 }

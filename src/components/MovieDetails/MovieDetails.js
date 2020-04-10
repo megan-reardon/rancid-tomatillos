@@ -12,7 +12,7 @@ class MovieDetails extends Component {
     const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props
     return (
       <article className="movie-details-card" >
-        <section className="img-poster">
+        <section className="movie-images">
           <img src={poster_path} alt={"image for " + title}/>
           <img src={backdrop_path} alt={"image for " + title}/>
         </section>
