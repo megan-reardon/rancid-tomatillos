@@ -16,9 +16,13 @@ header {
       }
     }
 
-    .login-button {
-      @include buttonStyle;
+    .login-wrap {
+      span {
+        margin-right:20px;
+      }
+      .login-button {
+        @include buttonStyle;
+      }
     }
   }
-
 }

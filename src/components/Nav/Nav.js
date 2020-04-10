@@ -1,11 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import { logout } from '../../actions';
 
 import logo from '../../svgs/rancid-tomatillos-logo.svg';
 
-const Nav = ({ userInfo }) => {
-  let loginText = userInfo.id ? 'Logout' : 'Login';
+const Nav = ({ userInfo, history, logout }) => {
+  const loginText = userInfo.id ? 'Logout' : 'Login';
+  const welcomeMessage = userInfo.name ? `Welcome, ${userInfo.name}!` : '';
+  const loginToPath = !userInfo.id ? "/login" : "/";
+  const handleLogout = (id) => {
+    userInfo.id && logout(id);
+  }
 
   return (
     <header>
@@ -15,15 +22,27 @@ const Nav = ({ userInfo }) => {
             <img src={logo} alt="Rancid Tomatillos Logo" />
           </Link>
         </div>
-        <Link
-          to="/login"
-          className="login-button"
-        >
-          {loginText}
-        </Link>
+        <div className="login-wrap">
+          <span>{welcomeMessage}</span>
+          <Link
+            to={loginToPath}
+            className="login-button"
+            onClick={() => handleLogout(userInfo.id)}
+            >
+            {loginText}
+          </Link>
+        </div>
       </div>
     </header>
   )
 }
 
-export default Nav;
+const mapStateToProps = ({ userInfo }) => ({
+  userInfo
+})
+
+const mapDispatchToProps = dispatch => ({
+  logout: id => dispatch( logout(id) )
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));
