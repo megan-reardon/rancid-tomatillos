@@ -16,16 +16,17 @@ class MovieDetails extends Component {
 
   checkIfLoggedIn = (e) => {
     e.preventDefault();
-    const { rateMovie } = this.props;
+    // const { rateMovie } = this.props;
     //go into userInfo in store
     //check if user is logged in
     // if yes - submitRating(rating)
     this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating })
       .then(response => response.json())
-      .then(data => {
-        rateMovie(data);
-        this.fetchRatings(this.props.userInfo.id);
-      })
+      .then(data => this.fetchRatings(this.props.userInfo.id))
+      // {
+      //   // rateMovie(data);
+      //   this.fetchRatings(this.props.userInfo.id);
+      // })
       //could replace lines 24-25 with fetch and update store
 
     // if no - display error
@@ -109,7 +110,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  movieRatings: state.movieRatings,
+  // movieRatings: state.movieRatings,
   userRatings: state.userRatings,
   userInfo: state.userInfo
 })
