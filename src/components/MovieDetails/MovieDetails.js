@@ -12,7 +12,6 @@ class MovieDetails extends Component {
 
   componentDidMount = () => {
     this.fetchRatings(this.props.userInfo.id)
-
   }
 
   checkIfLoggedIn = (e) => {
