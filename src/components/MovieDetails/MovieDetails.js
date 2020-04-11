@@ -22,7 +22,10 @@ class MovieDetails extends Component {
     // if yes - submitRating(rating)
     this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating })
       .then(response => response.json())
-      .then(data => rateMovie(data))
+      .then(data => {
+        rateMovie(data);
+        this.fetchRatings();
+      })
       //could replace lines 24-25 with fetch and update store
 
     // if no - display error
@@ -36,8 +39,7 @@ class MovieDetails extends Component {
     //gets all ratings for this user in the API and update movieRatings
     fetch('https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings')
       .then(response => response.json())
-      .then(data => console.log(data))
-      // .then(data => this.props.fetchUserRatings(data.ratings))
+      .then(data => this.props.fetchUserRatings(data.ratings))
   }
   //this needs to move! have fetch happen after login on initial render and update store with allRatings
 
@@ -90,7 +92,8 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const mapStateToProps = (state) => ({
-  movieRatings: state.movieRatings
+  movieRatings: state.movieRatings,
+  userRatings: state.userRatings
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
