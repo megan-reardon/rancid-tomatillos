@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieCard from "../MovieCard/MovieCard"
+import { connect } from 'react-redux';
 
 class MovieContainer extends Component {
   constructor() {
@@ -7,7 +8,9 @@ class MovieContainer extends Component {
   }
 
   createMovieList = () =>{
-    return movies.map(movie => {
+    // console.log(this.props.movies)
+    console.log(this.props)
+    this.props.movies.map(movie => {
       return (
         <MovieCard
           key={movie.id}
@@ -22,9 +25,15 @@ class MovieContainer extends Component {
   render() {
   return (
     <section className="movie-container">
-      {createMovieList}
+      {this.createMovieList}
     </section>
   )}
 }
 
-export default MovieContainer;
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  userRatings: state.userRatings,
+  userInfo: state.userInfo
+})
+
+export default connect(mapStateToProps, null)(MovieContainer);

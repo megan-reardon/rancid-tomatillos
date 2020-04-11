@@ -26,7 +26,6 @@ class App extends Component {
         path="/"
         render={() => (
           <MovieContainer
-            movies={this.props.movies}
           />
         )}
       />
