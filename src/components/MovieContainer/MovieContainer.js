@@ -1,23 +1,30 @@
-import React from "react"
+import React, { Component } from 'react';
 import MovieCard from "../MovieCard/MovieCard"
 
-const MovieContainer = ({ movies }) => {
-  const movieList = movies.map(movie => {
-    return (
-      <MovieCard
-        key={movie.id}
-        id={movie.id}
-        title={movie.title}
-        backdrop={movie.backdrop_path}
-        averageRating={movie.average_rating}
-      />)
-  })
+class MovieContainer extends Component {
+  constructor() {
+    super();
+  }
 
+  createMovieList = () =>{
+    return movies.map(movie => {
+      return (
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          backdrop={movie.backdrop_path}
+          averageRating={movie.average_rating}
+        />)
+    })
+  }
+
+  render() {
   return (
     <section className="movie-container">
-      {movieList}
+      {createMovieList}
     </section>
-  )
+  )}
 }
 
 export default MovieContainer;

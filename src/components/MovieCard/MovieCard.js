@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ id, title, backdrop, averageRating }) => {
+
   return (
     <article className="movie-card">
       <Link to={`/movies/${id}`}>
