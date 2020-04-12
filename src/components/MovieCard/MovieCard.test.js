@@ -26,7 +26,7 @@ describe('MovieCard', () => {
       testWrapper)
       debug()
     const titleEl = getByText("Spiderman");
-    const ratingEl = getByText("Average Rating: 3/10");
+    const ratingEl = getByText("Average Rating: 3.0/10");
     const altText = getByAltText("image for Spiderman")
     expect(titleEl).toBeInTheDocument();
     expect(ratingEl).toBeInTheDocument();
