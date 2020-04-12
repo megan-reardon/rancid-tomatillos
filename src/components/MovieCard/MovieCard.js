@@ -12,7 +12,7 @@ class MovieCard extends Component {
     let userRatingH2;
 
     if(userInfo.id){
-      userRatingH2 = `User Rating: ${userRating}/10`
+      userRatingH2 = `Your rating: ${userRating}/10`
     }
 
     return (
