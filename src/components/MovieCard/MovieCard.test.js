@@ -32,35 +32,4 @@ describe('MovieCard', () => {
     expect(ratingEl).toBeInTheDocument();
     expect(altText).toBeInTheDocument();
   })
-
-  // let mockRender;
-  // const testStore = createStore(rootReducer);
-  //
-  // beforeEach(() => {
-  //   mockRender = render(
-  //     <Provider store={testStore}>
-  //     <Router><MovieCard
-  //       movieInfo={{
-  //         title: "Spiderman",
-  //         average_rating: 3
-  //       }}
-  //     />
-  //     </Router>
-  //     </Provider>)
-  // })
-
-  // afterEach(() => {
-  //   cleanup()
-  // })
-
-  // it('should render the correct movie information on each movie card', () => {
-  //   const { getByText, getByAltText } = mockRender;
-  //   const titleEl = getByText("Spiderman");
-  //   const ratingEl = getByText("Average Rating: 3");
-  //   const altText = getByAltText("image for Spiderman")
-  //   expect(titleEl).toBeInTheDocument();
-  //   expect(ratingEl).toBeInTheDocument();
-  //   expect(altText).toBeInTheDocument();
-  // });
-
 });
