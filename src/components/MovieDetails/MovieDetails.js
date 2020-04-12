@@ -64,7 +64,7 @@ class MovieDetails extends Component {
     if(this.props.userInfo.id){
       return (
         <form className="submit-rating-form">
-          <label for="cars">Rate Movie: </label>
+          <label for="rate-movie">Rate Movie: </label>
           <select value={this.state.userRating} onChange={this.updateRating} required>
             <option value="1">1</option>
             <option value="2">2</option>
