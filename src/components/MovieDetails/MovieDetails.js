@@ -14,7 +14,7 @@ class MovieDetails extends Component {
     this.fetchRatings(this.props.userInfo.id)
   }
 
-  checkIfLoggedIn = (e) => {
+  submitNewRating = (e) => {
     e.preventDefault();
     this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating }, this.props.userInfo.id)
       .then(response => response.json())
@@ -60,6 +60,29 @@ class MovieDetails extends Component {
    }
   }
 
+  checkIfLoggedIn = () => {
+    if(this.props.userInfo.id){
+      return (
+        <form className="submit-rating-form">
+          <label for="cars">Rate Movie: </label>
+          <select value={this.state.userRating} onChange={this.updateRating} required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
+        </form>
+      )
+    }
+  }
+
   render() {
     const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
     return (
@@ -80,10 +103,7 @@ class MovieDetails extends Component {
           <section>
             {overview}
           </section>
-          <form className="submit-rating-form">
-            <input value={this.state.userRating} onChange={this.updateRating} type="number" step="1" min="1" max="10" placeholder="Enter rating (1-10)" required/>
-            <button className="submit-rating" type="submit" onClick={this.checkIfLoggedIn} >SUBMIT</button>
-          </form>
+          {this.checkIfLoggedIn()}
         </section>
       </article>
     )
