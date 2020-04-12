@@ -1,6 +1,9 @@
 import React from 'react';
 import Login from './Login.js';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from '../../reducers';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -8,10 +11,13 @@ describe('Login', () => {
   let mockRender;
 
   beforeEach(() => {
+    const testStore = createStore(rootReducer);
     mockRender = render(
-      <Router>
-        <Login />
-      </Router>
+      <Provider store={testStore}>
+        <Router>
+          <Login />
+        </Router>
+      </Provider>
     )
   })
 

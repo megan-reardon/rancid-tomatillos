@@ -2,35 +2,65 @@ import React from 'react';
 import MovieCard from './MovieCard.js';
 import { render, cleanup } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { rootReducer } from '../../reducers';
 import '@testing-library/jest-dom';
 
 describe('MovieCard', () => {
-
-  let mockRender;
-
-  beforeEach(() => {
-    mockRender = render(
-      <Router><MovieCard
-        movieInfo={{
-          title: "Spiderman",
-          average_rating: 3
-        }}
+  it('should render the correct movie information on each movie card', () => {
+    const testStore = createStore(rootReducer);
+      const testWrapper = <Provider store={testStore}>
+      <Router>
+      <MovieCard
+        id={5}
+        title={"Spiderman"}
+        averageRating={3}
+        backdrop={"https://image.tmdb.org/t/p/original//ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg"}
+        userRating={6}
       />
-      </Router>)
+      </Router>
+    </Provider>;
+
+    const { debug, getByText, getByAltText } = render(
+      testWrapper)
+      debug()
+    const titleEl = getByText("Spiderman");
+    const ratingEl = getByText("Average Rating: 3/10");
+    const altText = getByAltText("image for Spiderman")
+    expect(titleEl).toBeInTheDocument();
+    expect(ratingEl).toBeInTheDocument();
+    expect(altText).toBeInTheDocument();
   })
+
+  // let mockRender;
+  // const testStore = createStore(rootReducer);
+  //
+  // beforeEach(() => {
+  //   mockRender = render(
+  //     <Provider store={testStore}>
+  //     <Router><MovieCard
+  //       movieInfo={{
+  //         title: "Spiderman",
+  //         average_rating: 3
+  //       }}
+  //     />
+  //     </Router>
+  //     </Provider>)
+  // })
 
   // afterEach(() => {
   //   cleanup()
   // })
 
-  it('should render the correct movie information on each movie card', () => {
-    const { getByText, getByAltText } = mockRender;
-    const titleEl = getByText("Spiderman");
-    const ratingEl = getByText("Average Rating: 3");
-    const altText = getByAltText("image for Spiderman")
-    expect(titleEl).toBeInTheDocument();
-    expect(ratingEl).toBeInTheDocument();
-    expect(altText).toBeInTheDocument();
-  });
+  // it('should render the correct movie information on each movie card', () => {
+  //   const { getByText, getByAltText } = mockRender;
+  //   const titleEl = getByText("Spiderman");
+  //   const ratingEl = getByText("Average Rating: 3");
+  //   const altText = getByAltText("image for Spiderman")
+  //   expect(titleEl).toBeInTheDocument();
+  //   expect(ratingEl).toBeInTheDocument();
+  //   expect(altText).toBeInTheDocument();
+  // });
 
 });
