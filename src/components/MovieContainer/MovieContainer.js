@@ -29,6 +29,7 @@ class MovieContainer extends Component {
           backdrop={movie.backdrop_path}
           averageRating={movie.average_rating}
           userRating={movie.userRating}
+          userInfo = {this.props.userInfo}
         />)
     })
   }

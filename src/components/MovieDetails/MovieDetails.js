@@ -14,7 +14,7 @@ class MovieDetails extends Component {
     this.fetchRatings(this.props.userInfo.id)
   }
 
-  checkIfLoggedIn = (e) => {
+  submitNewRating = (e) => {
     e.preventDefault();
     this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating }, this.props.userInfo.id)
       .then(response => response.json())
@@ -45,13 +45,42 @@ class MovieDetails extends Component {
     );
   }
 
+  displayUserRatingConditional = () => {
+    if(this.props.userInfo.id){
+      return `Your rating: ${this.showUserRating()}`
+    }
+  }
+
   showUserRating = () => {
    let matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
    if(matchingMovie) {
-     return matchingMovie.rating
+     return `${matchingMovie.rating.toFixed(1)}/10`
    } else {
      return "You haven't rated this movie yet!"
    }
+  }
+
+  checkIfLoggedIn = () => {
+    if(this.props.userInfo.id){
+      return (
+        <form className="submit-rating-form">
+          <label for="rate-movie">Rate Movie: </label>
+          <select value={this.state.userRating} onChange={this.updateRating} required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
+        </form>
+      )
+    }
   }
 
   render() {
@@ -65,8 +94,8 @@ class MovieDetails extends Component {
         <section className="movie-details">
           <section>
             <h1>{title}</h1>
-            <h3>Average rating: {average_rating}</h3>
-            <h3>Your rating: {this.showUserRating()}</h3>
+            <h3>Average rating: {average_rating.toFixed(1)}/10</h3>
+            <h3>{this.displayUserRatingConditional()}</h3>
           </section>
           <section>
             <h3>Release date: {release_date}</h3>
@@ -74,10 +103,7 @@ class MovieDetails extends Component {
           <section>
             {overview}
           </section>
-          <form className="submit-rating-form">
-            <input value={this.state.userRating} onChange={this.updateRating} type="number" step="1" min="1" max="10" placeholder="Enter rating (1-10)" required/>
-            <button className="submit-rating" type="submit" onClick={this.checkIfLoggedIn} >SUBMIT</button>
-          </form>
+          {this.checkIfLoggedIn()}
         </section>
       </article>
     )
