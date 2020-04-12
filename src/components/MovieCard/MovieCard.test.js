@@ -22,12 +22,12 @@ describe('MovieCard', () => {
       </Router>
     </Provider>;
 
-    const { debug, getByText, getByAltText } = render(
-      testWrapper)
-      debug()
+    const { getByText, getByAltText } = render(testWrapper)
+
     const titleEl = getByText("Spiderman");
     const ratingEl = getByText("Average Rating: 3.0/10");
-    const altText = getByAltText("image for Spiderman")
+    const altText = getByAltText("image for Spiderman");
+
     expect(titleEl).toBeInTheDocument();
     expect(ratingEl).toBeInTheDocument();
     expect(altText).toBeInTheDocument();

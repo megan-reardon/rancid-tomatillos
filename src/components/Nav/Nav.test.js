@@ -10,7 +10,11 @@ import '@testing-library/jest-dom';
 describe("Nav", () => {
   it('should render the logo', () => {
     const testStore = createStore(rootReducer);
-    const testWrapper = <Provider store={testStore}><Router><Nav/></Router></Provider>
+    const testWrapper = <Provider store={testStore}>
+      <Router>
+        <Nav/>
+      </Router>
+    </Provider>
 
     const { getByAltText, getByText } = render (testWrapper)
 
