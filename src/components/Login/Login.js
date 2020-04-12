@@ -85,7 +85,7 @@ class Login extends Component {
     return(
     <section className="login-container">
       <form>
-        <h1>Login</h1>
+        <h1 data-testid="login-header">Login</h1>
         <span className="error">{this.state.error}</span>
         <label htmlFor="email">Email</label>
         <input
@@ -102,6 +102,7 @@ class Login extends Component {
           onChange={this.handleUpdate}
         />
         <button
+          data-testid="login-btn"
           onClick={this.checkUserData}
           disabled={this.validateForm()}
         >Login</button>

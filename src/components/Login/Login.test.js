@@ -22,24 +22,24 @@ describe('Login', () => {
   })
 
   it('should render the correct label on Login', () => {
-    const { getByText } = mockRender;
+    const { getByText, getByTestId } = mockRender;
 
-    const loginTitleElement = getByText("Login")
+    const loginTitleElement = getByTestId("login-header")
     const emailTitleElement = getByText("Email")
     const passwordTitleElement = getByText("Password")
-    const submitTitleElement = getByText("Submit Login")
+    const submitButtonElement = getByTestId("login-btn")
 
     expect(loginTitleElement).toBeInTheDocument();
     expect(emailTitleElement).toBeInTheDocument();
     expect(passwordTitleElement).toBeInTheDocument();
-    expect(submitTitleElement).toBeInTheDocument();
+    expect(submitButtonElement).toBeInTheDocument();
   })
 
   it("should have value in enter inputs", () => {
     const { getByPlaceholderText } = mockRender;
 
-    const emailInputElement = getByPlaceholderText("enter email");
-    const passwordInputElement = getByPlaceholderText("enter password");
+    const emailInputElement = getByPlaceholderText("Enter email");
+    const passwordInputElement = getByPlaceholderText("Enter password");
 
     fireEvent.change(emailInputElement, {target: {value: "Yoo@email.com"}});
     fireEvent.change(passwordInputElement, {target: {value: "password1"}});
