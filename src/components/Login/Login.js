@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, withRouter } from "react-router-dom";
-
-
-import { login } from '../../actions';
+import { login, getRatings } from '../../actions';
 
 class Login extends Component {
   constructor(props) {
@@ -30,6 +28,7 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
+              this.fetchRatings(this.props.userInfo.id)
               this.props.history.push('/');
             })
         } else {
@@ -58,13 +57,19 @@ class Login extends Component {
     );
   }
 
+  fetchRatings = (userId) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
+      .then(response => response.json())
+      .then(data => this.props.fetchUserRatings(data.ratings))
+  }
+
   validateForm = () => {
     const { email, password } = this.state;
     const validEmailRegex = RegExp(
       // eslint-disable-next-line
       /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
     );
-    
+
     const validEmail = email != '' && validEmailRegex.test(email);
     const validPassword = password !== '';
 
@@ -106,7 +111,12 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: userInfo => dispatch( login(userInfo) )
+  loginUser: userInfo => dispatch( login(userInfo) ),
+  fetchUserRatings: userRatings => dispatch( getRatings(userRatings) )
 })
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

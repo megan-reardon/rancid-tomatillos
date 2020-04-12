@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { submitRating, getRatings } from '../../actions';
+import { getRatings } from '../../actions';
 import { connect } from 'react-redux';
 
 class MovieDetails extends Component {
@@ -12,46 +12,27 @@ class MovieDetails extends Component {
 
   componentDidMount = () => {
     this.fetchRatings(this.props.userInfo.id)
-
   }
 
   checkIfLoggedIn = (e) => {
     e.preventDefault();
-    const { rateMovie } = this.props;
-    //go into userInfo in store
-    //check if user is logged in
-    // if yes - submitRating(rating)
-    this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating })
+    this.postNewRating({ movie_id: this.props.id , rating: this.state.userRating }, this.props.userInfo.id)
       .then(response => response.json())
-      .then(data => {
-        rateMovie(data);
-        this.fetchRatings(this.props.userInfo.id);
-      })
-      //could replace lines 24-25 with fetch and update store
-
-    // if no - display error
+      .then(() => this.fetchRatings(this.props.userInfo.id))
   }
-
-  // toggleDisable = () => {
-  //   //if userRatings in store has a rating with movieId that matches current movieId, then disable button
-  //   //else return false
-  //     return status;
-  // }
 
   updateRating = (e) => {
     this.setState({userRating: parseInt(e.target.value)})
   }
 
-  fetchRatings = () => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings`)
-    // fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
+  fetchRatings = (userId) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
       .then(response => response.json())
       .then(data => this.props.fetchUserRatings(data.ratings))
   }
-  //this needs to move! have fetch happen after login on initial render and update store with allRatings
 
-  postNewRating = (rating) => {
-    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings`,
+  postNewRating = (rating, userId) => {
+    return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`,
       {
         headers: {
           "Content-Type": "application/json"
@@ -104,13 +85,11 @@ class MovieDetails extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  rateMovie: rating => dispatch( submitRating(rating) ),
   fetchUserRatings: allRatings => dispatch( getRatings(allRatings) )
 })
 
 const mapStateToProps = (state) => ({
   movies: state.movies,
-  movieRatings: state.movieRatings,
   userRatings: state.userRatings,
   userInfo: state.userInfo
 })
