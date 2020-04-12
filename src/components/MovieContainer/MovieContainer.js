@@ -4,18 +4,6 @@ import { connect } from 'react-redux';
 import { getRatings } from '../../actions';
 
 class MovieContainer extends Component {
-  componentDidMount = () => {
-    this.fetchRatings()
-  }
-
-  fetchRatings = () => {
-    // will need to make it dynamic based on user login
-    // fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/3/ratings`)
-      .then(response => response.json())
-      .then(data => this.props.fetchUserRatings(data.ratings))
-  }
-
   updateUserMovieList = () => {
     return this.props.movies.map(movie => {
       return {...movie, userRating: this.checkUserRating(movie.id)}
