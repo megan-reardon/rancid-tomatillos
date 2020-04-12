@@ -38,4 +38,21 @@ describe('MovieDetails', () => {
     expect(moviePosterImage).toBeInTheDocument();
   })
 
+  it('Should render with the matching movie background', () => {
+    const { getByAltText } = render(testWrapper);
+    const movieBackgroundImage = getByAltText("background for Bloodshot");
+    expect(movieBackgroundImage).toBeInTheDocument();
+  })
+
+  it('Should render with the movie release date', () => {
+    const { getByText } = render(testWrapper);
+    const releaseDate = getByText("Release date: 2020-03-05");
+    expect(releaseDate).toBeInTheDocument();
+  })
+
+  it('Should render with the average user rating', () => {
+    const { getByText } = render(testWrapper);
+    const averageRating = getByText("Average rating: 5.8/10");
+    expect(averageRating).toBeInTheDocument();
+  })
 })
