@@ -16,11 +16,18 @@ describe('Actions Tests', () => {
   });
 
   it('should have type of LOGIN and correct payload', () => {
-    const userInfo = {
-      id: 1,
-      name: 'Lucy',
-      email: 'lucy@turing.io'
-    }
+    const expectedAction = {
+      type: 'LOGIN',
+      userInfo: {
+        id: 3,
+        name: 'lucy',
+        email: 'lucy@turing.io'
+      }
+    };
+
+    const result = actions.login({id: 3, name: 'lucy', email: 'lucy@turing.io'});
+
+    expect(result).toEqual(expectedAction);
   })
 
 });
