@@ -8,11 +8,12 @@ import Login from '../Login/Login';
 import MovieContainer from "../MovieContainer/MovieContainer";
 import MovieDetails from '../MovieDetails/MovieDetails';
 
+import { apiFetchMovies } from '../../apiCalls/apiCalls';
+
 class App extends Component {
 
   componentDidMount = () => {
-    fetch('https://rancid-tomatillos.herokuapp.com/api/v1/movies')
-      .then(response => response.json())
+    apiFetchMovies()
       .then(data => this.props.fetchMovies(data.movies))
       .catch(err => console.log(err.message))
   }
