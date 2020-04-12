@@ -5,10 +5,19 @@
   color:#fff;
   text-decoration:none;
   transition: .2s;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  font-size:1rem;
 
   &:hover {
     background-color:$light-green;
     transition: .2s;
+    cursor:pointer;
+  }
+
+  &:disabled {
+    background-color:$light-gray;
+    cursor: no-drop;
   }
 }
 

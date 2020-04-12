@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Router, withRouter } from "react-router-dom";
-
-
-import { login } from '../../actions';
+import { login, getRatings } from '../../actions';
 
 class Login extends Component {
   constructor(props) {
@@ -30,14 +28,19 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
+              this.fetchRatings(this.props.userInfo.id)
               this.props.history.push('/');
             })
         } else {
           return response.json()
-            .then(data => this.setState({ error:data.error }))
+            .then(data => {
+              this.setState({ error:data.error })
+              console.log(data.error);
+            })
         }
       }
-    );
+    )
+    .catch(err => console.log(err))
   }
 
   fetchUserData = () => {
@@ -54,10 +57,21 @@ class Login extends Component {
     );
   }
 
+  fetchRatings = (userId) => {
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/users/${userId}/ratings`)
+      .then(response => response.json())
+      .then(data => this.props.fetchUserRatings(data.ratings))
+  }
+
   validateForm = () => {
     const { email, password } = this.state;
-    const validEmail = email.includes('@') && email.includes('.io')
-    const validPassword = password.includes('password')
+    const validEmailRegex = RegExp(
+      // eslint-disable-next-line
+      /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
+    );
+
+    const validEmail = email != '' && validEmailRegex.test(email);
+    const validPassword = password !== '';
 
     if (validEmail && validPassword) {
       return false;
@@ -68,9 +82,8 @@ class Login extends Component {
 
   render() {
     const isEnabled = this.validateForm();
-
     return(
-    <main className="login-container">
+    <section className="login-container">
       <form>
         <h1>Login</h1>
         <span className="error">{this.state.error}</span>
@@ -78,27 +91,32 @@ class Login extends Component {
         <input
           type="text"
           name="email"
-          placeholder="enter email"
+          placeholder="Enter email"
           onChange={this.handleUpdate}
         />
         <label htmlFor="password">Password</label>
         <input
           type="text"
           name="password"
-          placeholder="enter password"
+          placeholder="Enter password"
           onChange={this.handleUpdate}
         />
-          <button
-            onClick={this.checkUserData}
-            disabled={this.validateForm()}
-          >Login</button>
+        <button
+          onClick={this.checkUserData}
+          disabled={this.validateForm()}
+        >Login</button>
       </form>
-    </main>)
+    </section>)
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUser: userInfo => dispatch( login(userInfo) )
+  loginUser: userInfo => dispatch( login(userInfo) ),
+  fetchUserRatings: userRatings => dispatch( getRatings(userRatings) )
 })
 
-export default connect(null, mapDispatchToProps)(withRouter(Login));
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));

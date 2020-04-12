@@ -1,22 +1,55 @@
-import React from "react"
+import React, { Component } from 'react';
 import MovieCard from "../MovieCard/MovieCard"
+import { connect } from 'react-redux';
+import { getRatings } from '../../actions';
 
-const MovieContainer = ({ movies }) => {
-  const movieList = movies.map(movie => {
+class MovieContainer extends Component {
+  updateUserMovieList = () => {
+    return this.props.movies.map(movie => {
+      return {...movie, userRating: this.checkUserRating(movie.id)}
+    })
+  }
+
+  checkUserRating = (id) => {
+    const ratingCheck = this.props.userRatings.find(rating => rating.movie_id === id);
+    if(ratingCheck) {
+      return ratingCheck.rating
+    } else {
+      return "Not Rated Yet"
+    }
+  }
+
+  createMovieList = () =>{
+    return this.updateUserMovieList().map(movie => {
+      return (
+        <MovieCard
+          key={movie.id}
+          id={movie.id}
+          title={movie.title}
+          backdrop={movie.backdrop_path}
+          averageRating={movie.average_rating}
+          userRating={movie.userRating}
+        />)
+    })
+  }
+
+  render() {
     return (
-      <MovieCard
-        id={movie.id}
-        title={movie.title}
-        backdrop={movie.backdrop_path}
-        averageRating={movie.average_rating}
-      />)
-  })
-
-  return (
-    <section className="movie-container">
-      {movieList}
-    </section>
-  )
+      <section className="movie-container">
+        {this.createMovieList()}
+      </section>
+    )
+  }
 }
 
-export default MovieContainer;
+const mapDispatchToProps = (dispatch) => ({
+  fetchUserRatings: allRatings => dispatch( getRatings(allRatings) )
+})
+
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  userRatings: state.userRatings,
+  userInfo: state.userInfo
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieContainer);
