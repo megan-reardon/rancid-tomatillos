@@ -38,8 +38,7 @@ const Nav = ({ userInfo, history, logout }) => {
 }
 
 const mapStateToProps = ({ userInfo, userRatings }) => ({
-  userInfo,
-  userRatings
+  userInfo
 })
 
 const mapDispatchToProps = dispatch => ({
