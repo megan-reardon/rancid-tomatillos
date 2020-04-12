@@ -72,8 +72,8 @@ class MovieDetails extends Component {
     return (
       <article className="movie-details-card" >
         <section className="movie-images">
-          <img src={poster_path} alt={"image for " + title}/>
-          <img src={backdrop_path} alt={"image for " + title}/>
+          <img src={poster_path} alt={"poster for " + title}/>
+          <img src={backdrop_path} alt={"background for " + title}/>
         </section>
         <section className="movie-details">
           <section>

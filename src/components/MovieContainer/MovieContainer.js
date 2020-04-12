@@ -36,7 +36,7 @@ class MovieContainer extends Component {
 
   render() {
     return (
-      <section className="movie-container">
+      <section className="movie-container" data-testid="movie-container">
         {this.createMovieList()}
       </section>
     )
