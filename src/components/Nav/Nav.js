@@ -37,12 +37,12 @@ const Nav = ({ userInfo, history, logout }) => {
   )
 }
 
-const mapStateToProps = ({ userInfo, userRatings }) => ({
+const mapStateToProps = ({ userInfo }) => ({
   userInfo
 })
 
 const mapDispatchToProps = dispatch => ({
-  logout: id => dispatch( logout(id) ),
+  logout: id => dispatch( logout(id) )
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Nav));
