@@ -24,7 +24,21 @@ export const apiFetchUserData = async (email, password) => {
   );
 }
 
-export const apiFetchRatings = (userId) => {
-  return fetch(BASE_URL + USERS + `${userId}` + RATINGS_ENDPOINT)
+export const apiFetchRatings = async (userId) => {
+  return await fetch(BASE_URL + USERS + `${userId}` + RATINGS_ENDPOINT)
     .then(response => response.json())
+}
+
+export const apiPostNewRating = async (rating, userId) => {
+  return await fetch(BASE_URL + USERS + `${userId}` + RATINGS_ENDPOINT,
+    {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(
+        rating
+      ),
+    }
+  );
 }
