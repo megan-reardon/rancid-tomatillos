@@ -54,7 +54,7 @@ class MovieDetails extends Component {
   showUserRating = () => {
    let matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
    if(matchingMovie) {
-     return `${matchingMovie.rating}/10`
+     return `${matchingMovie.rating.toFixed(1)}/10`
    } else {
      return "You haven't rated this movie yet!"
    }
@@ -71,7 +71,7 @@ class MovieDetails extends Component {
         <section className="movie-details">
           <section>
             <h1>{title}</h1>
-            <h3>Average rating: {average_rating}/10</h3>
+            <h3>Average rating: {average_rating.toFixed(1)}/10</h3>
             <h3>{this.displayUserRatingConditional()}</h3>
           </section>
           <section>

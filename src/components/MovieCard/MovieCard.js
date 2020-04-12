@@ -11,8 +11,11 @@ class MovieCard extends Component {
     const { id, title, backdrop, averageRating, userRating, userInfo } = this.props;
     let userRatingH2;
 
-    if(userInfo.id){
-      userRatingH2 = `Your rating: ${userRating}/10`
+    if(userInfo.id && this.props.userRating > 0){
+      let roundedRating = parseInt(userRating).toFixed(1)
+      userRatingH2 = `Your rating: ${roundedRating}/10`
+    } else if(userInfo.id){
+      userRatingH2 = "You haven't rated this movie yet!"
     }
 
     return (
@@ -21,7 +24,7 @@ class MovieCard extends Component {
           <img src={backdrop} alt={"image for " + title}/>
           <div className="movie-info-container">
           <h1>{title}</h1>
-          <h2>Average Rating: {averageRating}/10</h2>
+          <h2>Average Rating: {averageRating.toFixed(1)}/10</h2>
           <h2>{userRatingH2}</h2>
         </div>
         </Link>
