@@ -35,9 +35,7 @@ class MovieDetails extends Component {
       })
       .then(() => apiFetchRatings(this.props.userInfo.id))
       .then(data => this.props.fetchUserRatings(data.ratings))
-    } else if (!matchingMovie) {
-      console.log("not rated yet")
-    }
+    } 
   }
 
   updateRating = (e) => {
@@ -53,10 +51,10 @@ class MovieDetails extends Component {
   showUserRating = () => {
    let matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
    if(matchingMovie) {
-     return `${matchingMovie.rating.toFixed(1)}/10`
-   } else {
-     return "You haven't rated this movie yet!"
-   }
+      return `${matchingMovie.rating.toFixed(1)}/10`
+    } else {
+      return "You haven't rated this movie yet!"
+    }
   }
 
   checkIfLoggedIn = () => {
