@@ -42,3 +42,9 @@ export const apiPostNewRating = async (rating, userId) => {
     }
   );
 }
+
+export const apiDeleteRating = async (userId, movieRatingId) => {
+  return await fetch(BASE_URL + USERS + `${userId}` + RATINGS_ENDPOINT + `${movieRatingId}`, {
+    method: "DELETE"
+  })
+}

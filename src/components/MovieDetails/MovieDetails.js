@@ -2,25 +2,31 @@ import React, { Component } from 'react';
 import { getRatings } from '../../actions';
 import { connect } from 'react-redux';
 
-import { apiFetchRatings, apiPostNewRating } from '../../apiCalls/apiCalls';
+import { apiFetchRatings, apiPostNewRating, apiDeleteRating } from '../../apiCalls/apiCalls';
 
 class MovieDetails extends Component {
   constructor() {
     super();
     this.state = {
-      userRating: null
+      userRating: 0
     }
-  }
-
-  componentDidMount = () => {
-    apiFetchRatings(this.props.userInfo.id)
-      .then(data => this.props.fetchUserRatings(data.ratings))
   }
 
   submitNewRating = (e) => {
     e.preventDefault();
-    apiPostNewRating({ movie_id: this.props.id , rating: this.state.userRating }, this.props.userInfo.id)
+    const userId = this.props.userInfo.id;
+    const userMovieRating = { movie_id: this.props.id , rating: this.state.userRating }
+    apiPostNewRating(userMovieRating, userId)
       .then(response => response.json())
+      .then(() => apiFetchRatings(this.props.userInfo.id))
+      .then(data => this.props.fetchUserRatings(data.ratings))
+  }
+
+  removeRating = (e) => {
+    e.preventDefault();
+    const userId = this.props.userInfo.id;
+    const matchingMovieId = this.props.userRatings.find(rating => rating.movie_id === this.props.id).id;
+    apiDeleteRating(userId, matchingMovieId)
       .then(() => apiFetchRatings(this.props.userInfo.id))
       .then(data => this.props.fetchUserRatings(data.ratings))
   }
@@ -38,18 +44,36 @@ class MovieDetails extends Component {
   showUserRating = () => {
    let matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
    if(matchingMovie) {
-     return `${matchingMovie.rating.toFixed(1)}/10`
-   } else {
-     return "You haven't rated this movie yet!"
-   }
+      return `${matchingMovie.rating}/10`
+    } else {
+      return "You haven't rated this movie yet!"
+    }
   }
 
   checkIfLoggedIn = () => {
     if(this.props.userInfo.id){
       return (
         <form className="submit-rating-form">
-          <label for="rate-movie">Rate Movie: </label>
+          {this.toggleRatingButtons()}
+        </form>
+      )
+    }
+  }
+
+  toggleRatingButtons = () => {
+    const matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
+    if(matchingMovie) {
+      return (
+        <section>
+          <label for="remove-rating">Remove Movie Rating: </label>
+          <button className="remove-rating" type="submit" onClick={this.removeRating} >Remove Rating</button>
+        </section>)
+    } else if (!matchingMovie) {
+      return (
+        <section>
+        <label for="rate-movie">Rate Movie: </label>
           <select value={this.state.userRating} onChange={this.updateRating} required>
+            <option value="0">--Select a Rating--</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -61,9 +85,8 @@ class MovieDetails extends Component {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
-          <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
-        </form>
-      )
+          <button className="submit-rating" type="submit" onClick={this.submitNewRating} disabled={this.state.userRating === 0}>SUBMIT</button>
+        </section>)
     }
   }
 
