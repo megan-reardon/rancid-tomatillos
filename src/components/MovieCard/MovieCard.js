@@ -39,8 +39,9 @@ MovieCard.propTypes = {
   title: PropTypes.string,
   backdrop: PropTypes.string,
   averageRating: PropTypes.number,
-  userRating: PropTypes.string,
-  userInfo: PropTypes.object
+  userInfo: PropTypes.object,
+  // userRating: PropTypes.string
+  //NOTE: This proptype switches from a string to a number depending on if the user has rated the movie (I believe). We should change how this is stored to be consistent and enable the use of PropTypes here
 }
 
 const mapStateToProps = (state) => ({

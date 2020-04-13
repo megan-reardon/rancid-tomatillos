@@ -48,7 +48,8 @@ MovieContainer.propTypes = {
   userInfo: PropTypes.object,
   logout: PropTypes.func,
   fetchUserRatings: PropTypes.func,
-  movies: PropTypes.array
+  movies: PropTypes.array,
+  userRatings: PropTypes.array
 }
 
 const mapDispatchToProps = (dispatch) => ({
