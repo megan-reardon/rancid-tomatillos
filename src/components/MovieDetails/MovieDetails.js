@@ -68,7 +68,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
+    const { title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
     return (
       <article className="movie-details-card" >
         <section className="movie-images">
