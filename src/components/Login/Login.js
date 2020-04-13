@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { login, getRatings } from '../../actions';
 
 import { apiFetchUserData, apiFetchRatings } from '../../apiCalls/apiCalls';
@@ -54,7 +54,7 @@ class Login extends Component {
       /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
     );
 
-    const validEmail = email != '' && validEmailRegex.test(email);
+    const validEmail = email !== '' && validEmailRegex.test(email);
     const validPassword = password !== '';
 
     if (validEmail && validPassword) {
@@ -65,7 +65,6 @@ class Login extends Component {
   }
 
   render() {
-    const isEnabled = this.validateForm();
     return(
     <section className="login-container">
       <form>
