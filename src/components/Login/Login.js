@@ -88,7 +88,7 @@ class Login extends Component {
           data-testid="login-btn"
           onClick={this.checkUserData}
           disabled={this.validateForm()}
-        >Login</button>
+        >Login!</button>
       </form>
     </section>)
   }
