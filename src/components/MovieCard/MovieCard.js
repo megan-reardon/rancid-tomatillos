@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class MovieCard extends Component {
   constructor() {
@@ -31,6 +32,15 @@ class MovieCard extends Component {
       </article>
     )
   }
+}
+
+MovieCard.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  backdrop: PropTypes.string,
+  averageRating: PropTypes.number,
+  userRating: PropTypes.string,
+  userInfo: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
