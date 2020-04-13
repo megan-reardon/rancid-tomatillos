@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MovieCard from "../MovieCard/MovieCard"
 import { connect } from 'react-redux';
 import { getRatings } from '../../actions';
+import PropTypes from 'prop-types';
 
 class MovieContainer extends Component {
   updateUserMovieList = () => {
@@ -41,6 +42,14 @@ class MovieContainer extends Component {
       </section>
     )
   }
+}
+
+MovieContainer.propTypes = {
+  userInfo: PropTypes.object,
+  logout: PropTypes.func,
+  fetchUserRatings: PropTypes.func,
+  movies: PropTypes.array,
+  userRatings: PropTypes.array
 }
 
 const mapDispatchToProps = (dispatch) => ({

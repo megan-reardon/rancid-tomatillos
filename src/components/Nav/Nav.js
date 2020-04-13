@@ -37,6 +37,12 @@ const Nav = ({ userInfo, history, logout }) => {
   )
 }
 
+Nav.propTypes = {
+  userInfo: PropTypes.object,
+  history: PropTypes.object,
+  logout: PropTypes.func
+}
+
 const mapStateToProps = ({ userInfo }) => ({
   userInfo
 })

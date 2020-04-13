@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMovies } from '../../actions';
+import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
 import Nav from '../Nav/Nav';
@@ -55,6 +56,12 @@ class App extends Component {
       </main>
     )
   }
+}
+
+App.propTypes = {
+  fetchMovies: PropTypes.func,
+  movies: PropTypes.array,
+  userInfo: PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
