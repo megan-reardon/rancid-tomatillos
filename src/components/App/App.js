@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getMovies } from '../../actions';
-import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 
 import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
@@ -20,9 +20,11 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <main>
       <Nav />
+    <Switch>
       <Route
         exact
         path="/"
@@ -40,11 +42,17 @@ class App extends Component {
         path="/movies/:id/" exact
         render={({ match }) => {
           const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
+
           return <MovieDetails
                   {...selectedMovie}
                  />
         }}
       />
+      <Route
+        path="*"
+        component={MovieContainer}
+      />
+      </Switch>
       </main>
     )
   }
