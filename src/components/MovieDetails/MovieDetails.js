@@ -93,7 +93,9 @@ class MovieDetails extends Component {
         </article>)
       } else {
         return (
-          <p>Movie does not exist!</p>
+          <section className="movie-details-error">
+          <h1>Sorry, this movie does not exist!</h1>
+          </section>
         )
       }
     }

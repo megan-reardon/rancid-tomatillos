@@ -52,6 +52,14 @@ a {
   grid-template-columns: 1fr 2fr;
 }
 
+.movie-details-error {
+  margin: 10em 3em 0em 3em;
+  h1 {
+    text-align: center;
+    font-size: 3em;
+  }
+}
+
 .movie-images {
   display: flex;
   justify-content: center;
