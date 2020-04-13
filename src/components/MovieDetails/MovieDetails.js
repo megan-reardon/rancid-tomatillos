@@ -69,7 +69,8 @@ class MovieDetails extends Component {
 
   render() {
     const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
-    return (
+    if (title) {
+      return (
         <article className="movie-details-card">
         <section className="movie-images">
         <img src={poster_path} alt={"poster for " + title}/>
@@ -90,6 +91,11 @@ class MovieDetails extends Component {
         {this.checkIfLoggedIn()}
         </section>
         </article>)
+      } else {
+        return (
+          <p>Movie does not exist!</p>
+        )
+      }
     }
 }
 
