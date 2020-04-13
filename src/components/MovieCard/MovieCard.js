@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class MovieCard extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     const { id, title, backdrop, averageRating, userRating, userInfo } = this.props;
