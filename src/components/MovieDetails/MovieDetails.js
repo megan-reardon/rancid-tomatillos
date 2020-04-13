@@ -2,19 +2,14 @@ import React, { Component } from 'react';
 import { getRatings } from '../../actions';
 import { connect } from 'react-redux';
 
-import { apiFetchRatings, apiPostNewRating } from '../../apiCalls/apiCalls';
+import { apiFetchRatings, apiPostNewRating, apiDeleteRating } from '../../apiCalls/apiCalls';
 
 class MovieDetails extends Component {
   constructor() {
     super();
     this.state = {
-      userRating: null
+      userRating: 1
     }
-  }
-
-  componentDidMount = () => {
-    apiFetchRatings(this.props.userInfo.id)
-      .then(data => this.props.fetchUserRatings(data.ratings))
   }
 
   submitNewRating = (e) => {
@@ -27,15 +22,11 @@ class MovieDetails extends Component {
 
   removeRating = (e) => {
     e.preventDefault();
-    const matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
-    if(matchingMovie) {
-      const deleteLink = `https://rancid-tomatillos.herokuapp.com/api/v1/users/${this.props.userInfo.id}/ratings/${matchingMovie.id}`
-      fetch(deleteLink, {
-        method: "DELETE"
-      })
+    const userId = this.props.userInfo.id;
+    const matchingMovieId = this.props.userRatings.find(rating => rating.movie_id === this.props.id).id;
+    apiDeleteRating(userId, matchingMovieId)
       .then(() => apiFetchRatings(this.props.userInfo.id))
       .then(data => this.props.fetchUserRatings(data.ratings))
-    } 
   }
 
   updateRating = (e) => {
