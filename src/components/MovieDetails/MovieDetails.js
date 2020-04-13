@@ -13,8 +13,9 @@ class MovieDetails extends Component {
   }
 
   componentDidMount = () => {
-    apiFetchRatings(this.props.userInfo.id)
-      .then(data => this.props.fetchUserRatings(data.ratings))
+    this.props.userInfo.id
+      && apiFetchRatings(this.props.userInfo.id)
+          .then(data => this.props.fetchUserRatings(data.ratings))
   }
 
   submitNewRating = (e) => {

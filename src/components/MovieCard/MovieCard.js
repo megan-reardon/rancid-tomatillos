@@ -17,7 +17,10 @@ class MovieCard extends Component {
 
     return (
       <article className="movie-card">
-        <Link to={`/movies/${id}`}>
+        <Link
+          to={`/movies/${id}`}
+          data-testid={`movie-${id}`}
+        >
           <img src={backdrop} alt={"image for " + title}/>
           <div className="movie-info-container">
           <h1>{title}</h1>
