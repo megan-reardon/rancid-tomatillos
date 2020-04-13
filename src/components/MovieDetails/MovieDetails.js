@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getRatings } from '../../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { apiFetchRatings, apiPostNewRating } from '../../apiCalls/apiCalls';
 
@@ -92,6 +93,20 @@ class MovieDetails extends Component {
       </article>
     )
   }
+}
+
+MovieDetails.propTypes = {
+  userInfo: PropTypes.object,
+  fetchUserRatings: PropTypes.func,
+  movies: PropTypes.array,
+  userRatings: PropTypes.array,
+  id: PropTypes.number,
+  title: PropTypes.string,
+  backdrop_path: PropTypes.string,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
+  overview: PropTypes.string,
+  average_rating: PropTypes.number
 }
 
 const mapDispatchToProps = (dispatch) => ({

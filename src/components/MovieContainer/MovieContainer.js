@@ -46,7 +46,6 @@ class MovieContainer extends Component {
 
 MovieContainer.propTypes = {
   userInfo: PropTypes.object,
-  history: PropTypes.object,
   logout: PropTypes.func,
   fetchUserRatings: PropTypes.func,
   movies: PropTypes.array
