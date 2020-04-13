@@ -63,7 +63,24 @@ class MovieDetails extends Component {
     if(this.props.userInfo.id){
       return (
         <form className="submit-rating-form">
-          <label for="rate-movie">Rate Movie: </label>
+          {this.toggleRatingButtons()}
+        </form>
+      )
+    }
+  }
+
+  toggleRatingButtons = () => {
+    const matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
+    if(matchingMovie) {
+      return (
+        <section>
+          <label for="remove-rating">Remove Movie Rating: </label>
+          <button className="remove-rating" type="submit" onClick={this.removeRating} >Remove Rating</button>
+        </section>)
+    } else if (!matchingMovie) {
+      return (
+        <section>
+        <label for="rate-movie">Rate Movie: </label>
           <select value={this.state.userRating} onChange={this.updateRating} required>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -77,9 +94,7 @@ class MovieDetails extends Component {
             <option value="10">10</option>
           </select>
           <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
-          <button className="remove-rating" type="submit" onClick={this.removeRating} >Remove Rating</button>
-        </form>
-      )
+        </section>)
     }
   }
 
