@@ -25,6 +25,21 @@ class MovieDetails extends Component {
       .then(data => this.props.fetchUserRatings(data.ratings))
   }
 
+  removeRating = (e) => {
+    e.preventDefault();
+    const matchingMovie = this.props.userRatings.find(rating => rating.movie_id === this.props.id);
+    if(matchingMovie) {
+      const deleteLink = `https://rancid-tomatillos.herokuapp.com/api/v1/users/${this.props.userInfo.id}/ratings/${matchingMovie.id}`
+      fetch(deleteLink, {
+        method: "DELETE"
+      })
+      .then(() => apiFetchRatings(this.props.userInfo.id))
+      .then(data => this.props.fetchUserRatings(data.ratings))
+    } else if (!matchingMovie) {
+      console.log("not rated yet")
+    }
+  }
+
   updateRating = (e) => {
     this.setState({userRating: parseInt(e.target.value)})
   }
@@ -62,6 +77,7 @@ class MovieDetails extends Component {
             <option value="10">10</option>
           </select>
           <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
+          <button className="remove-rating" type="submit" onClick={this.removeRating} >Remove Rating</button>
         </form>
       )
     }
