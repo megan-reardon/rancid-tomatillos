@@ -24,34 +24,34 @@ class App extends Component {
     return (
       <main>
       <Nav />
-    <Switch>
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <MovieContainer/>
-        )}
-      />
-      <Route
-        path="/login"
-        render={() => (
-          <Login userInfo={this.props.userInfo}/>
-        )}
-      />
-      <Route
-        path="/movies/:id/" exact
-        render={({ match }) => {
-          const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <MovieContainer/>
+          )}
+        />
+        <Route
+          path="/login"
+          render={() => (
+            <Login userInfo={this.props.userInfo}/>
+          )}
+        />
+        <Route
+          path="/movies/:id/" exact
+          render={({ match }) => {
+            const selectedMovie = this.props.movies.find(movie => parseInt(match.params.id) === movie.id)
 
-          return <MovieDetails
-                  {...selectedMovie}
-                 />
-        }}
-      />
-      <Route
-        path="*"
-        component={MovieContainer}
-      />
+            return <MovieDetails
+                    {...selectedMovie}
+                   />
+          }}
+        />
+        <Route
+          path="*"
+          component={MovieContainer}
+        />
       </Switch>
       </main>
     )
