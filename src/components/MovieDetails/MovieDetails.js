@@ -113,10 +113,12 @@ class MovieDetails extends Component {
 
               {this.props.userInfo.id && <h3 className="user-rating">Your rating: <span>{this.displayUserRatingConditional()}</span></h3>}
 
-              <h3>Release date: <span>{release_date}</span></h3>
+              <h3>Release date: <span>{release_date.slice(0, 4)}</span></h3>
             </section>
             <section>
-              {overview}
+              <p>
+                {overview}
+              </p>
             </section>
             {this.checkIfLoggedIn()}
           </section>
