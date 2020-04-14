@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { rootReducer } from '../../reducers';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 describe('Login', () => {
@@ -12,14 +12,21 @@ describe('Login', () => {
 
   beforeEach(() => {
     const testStore = createStore(rootReducer);
+    const checkUserData = jest.fn()
     mockRender = render(
       <Provider store={testStore}>
         <Router>
-          <Login />
+          <Login
+            checkUserData={checkUserData}
+          />
         </Router>
       </Provider>
     )
-  })
+  });
+
+  afterEach(() => {
+    cleanup
+  });
 
   it('should render the correct label on Login', () => {
     const { getByText, getByTestId } = mockRender;
@@ -46,6 +53,17 @@ describe('Login', () => {
 
     expect(emailInputElement.value).toBe("Yoo@email.com");
     expect(passwordInputElement.value).toBe("password1");
+  });
+
+  it('should call the login function when the Login button is clicked', () => {
+
+    const { getByTestId } = mockRender;
+
+    const loginButton = getByTestId('login-btn')
+
+    fireEvent.click(loginButton);
+
+    expect(checkUserData).toHaveBeenCalledTimes(1)
   })
 
 })

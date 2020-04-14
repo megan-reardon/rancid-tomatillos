@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieCard from './MovieCard.js';
-import { render, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -31,5 +31,30 @@ describe('MovieCard', () => {
     expect(titleEl).toBeInTheDocument();
     expect(ratingEl).toBeInTheDocument();
     expect(altText).toBeInTheDocument();
-  })
+  });
+
+  // it('should show the details for a movie if the movie card is clicked', () => {
+  //   const testStore = createStore(rootReducer);
+  //   const testWrapper = <Provider store={testStore}>
+  //   <Router>
+  //   <MovieCard
+  //     id={5}
+  //     title={"Spiderman"}
+  //     averageRating={3}
+  //     backdrop={"https://image.tmdb.org/t/p/original//ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg"}
+  //     userRating={6}
+  //   />
+  //   </Router>
+  // </Provider>;
+  //
+  // const { getByText, getByTestId, debug } = render(testWrapper);
+  //
+  // const titleEl = getByText("Spiderman");
+  // const movieCardEl = getByTestId('movie-5');
+  //
+  // fireEvent.click(movieCardEl);
+  // debug();
+  //
+  // expect(titleEl).toBeInTheDocument();
+  // })
 });
