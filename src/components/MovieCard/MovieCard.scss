@@ -1,15 +1,16 @@
 .movie-card {
-  height: 12em;
-  margin: 2em auto;
+  height: 14em;
+  // margin: 0 auto 2em;
+  margin-bottom:20px;
   overflow: hidden;
   padding: 0;
-  width: 20em;
+  width: 27em;
   img {
-    height: 12em;
+    height: 14em;
     margin: 0;
     object-fit: cover;
     position: absolute;
-    width: 20em;
+    width: 27em;
   }
   h1 {
     color: $dark-green;
@@ -24,19 +25,19 @@
     cursor: pointer;
   }
   &:hover .movie-info-container {
-    bottom: -7em;
+    bottom: -8em;
     height: 6em;
   }
 }
 
 .movie-info-container {
   background: rgba(255, 255, 255, 0.85);
-  bottom: -12em;
+  bottom: -14em;
   height: 0;
   margin: 0;
   overflow: hidden;
   padding: 3%;
   position: relative;
   transition: .5s ease;
-  width: 20em;
+  width: 27em;
 }
