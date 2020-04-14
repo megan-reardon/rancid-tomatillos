@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieCard from './MovieCard.js';
-import { render, cleanup } from '@testing-library/react';
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -31,5 +31,5 @@ describe('MovieCard', () => {
     expect(titleEl).toBeInTheDocument();
     expect(ratingEl).toBeInTheDocument();
     expect(altText).toBeInTheDocument();
-  })
+  });
 });
