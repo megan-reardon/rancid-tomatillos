@@ -31,7 +31,7 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
-              apiFetchRatings(this.props.userInfo.id)
+                apiFetchRatings(this.props.userInfo.id)
                 .then(data => this.props.fetchUserRatings(data.ratings))
                 .then(info => this.props.history.push('/'))
             })
