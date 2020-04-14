@@ -28,6 +28,7 @@ const Nav = ({ userInfo, history, logout }) => {
             to={loginToPath}
             className="login-button"
             onClick={() => handleLogout(userInfo.id)}
+            data-testid="login-page-btn"
             >
             {loginText}
           </Link>
