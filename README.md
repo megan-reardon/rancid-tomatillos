@@ -20,7 +20,6 @@ If a user is not logged in, they can still view movies and the average ratings f
 ![Details Page](https://i.imgur.com/QBjIrz9.png)
 
 #### In Action
-![Gif of app](https://i.imgur.com/zl7lEoN.gif)
 ![Gif of app](https://user-images.githubusercontent.com/15935329/79283989-ace2b200-7e76-11ea-843d-dd9b8da63b44.gif)
 
 #### Technologies Used
