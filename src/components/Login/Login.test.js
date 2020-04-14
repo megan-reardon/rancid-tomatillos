@@ -12,12 +12,12 @@ describe('Login', () => {
 
   beforeEach(() => {
     const testStore = createStore(rootReducer);
-    const checkUserData = jest.fn()
+    const handleUpdate = jest.fn()
     mockRender = render(
       <Provider store={testStore}>
         <Router>
           <Login
-            checkUserData={checkUserData}
+            handleUpdate={handleUpdate}
           />
         </Router>
       </Provider>
@@ -54,16 +54,4 @@ describe('Login', () => {
     expect(emailInputElement.value).toBe("Yoo@email.com");
     expect(passwordInputElement.value).toBe("password1");
   });
-
-  it('should call the login function when the Login button is clicked', () => {
-
-    const { getByTestId } = mockRender;
-
-    const loginButton = getByTestId('login-btn')
-
-    fireEvent.click(loginButton);
-
-    expect(checkUserData).toHaveBeenCalledTimes(1)
-  })
-
 })
