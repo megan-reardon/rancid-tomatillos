@@ -1,68 +1,35 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Rancid Tomatillos
 
-## Available Scripts
+#### Abstract
+This is a group project completed during Mod 3 at Turing School of Software and Design. The project asked us to complete a movie-rating site using Redux and React where a user can browse and rate movies. The user logs in with credentials (username: lucy@turing.io, password: password1) which are checked against data fetched from an API of users. Once logged in, the user can browse through movies displayed on the dashboard, click to view more details about a movie, and rate movies. The user can delete their existing rating and re-rate a given movie. The user is also provided with the average rating for each movie, calculated using data fetched from an API.
 
-In the project directory, you can run:
+If a user is not logged in, they can still view movies and the average ratings for each movie. The form to rate a movie is not displayed, nor is the text displaying their rating (or a message saying they have not rated the movie yet).
 
-### `npm start`
+#### Contributors
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Megan Venetianer](https://github.com/megan-venetianer)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Tim Nguyen](https://github.com/TimNguyen21)
 
-### `npm test`
+[Harry Borrelli](https://github.com/hborrelli1)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Cristina Peña](https://github.com/CLPena)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### In Action
+![Gif of app](url goes here)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### Technologies Used
+Development: Redux, React.js, Scss/Sass
+Testing: Jest, React Testing Library
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Wireframe
+The wireframe we developed for this project can be viewed on [Figma](https://www.figma.com/file/DqY5IU1HjxJkvv1UEd7mPT/Rancid-Tomatillos?node-id=0%3A1).
 
-### `npm run eject`
+#### Project Next Steps
+We would like to refactor our conditionals with fetch to use try/catch blocks (instead of checking the ok status and basing actions off of that). This will also require a refactoring of our tests, but would allow us to increase the span and depth of our testing, especially when mocking fetch calls.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#### Setup
+Fork and clone down this repo.
+Once you have cloned the repo, change into the directory.
+To view the application, run npm and open the provided localhost url in the browser.

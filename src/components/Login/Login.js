@@ -80,7 +80,7 @@ class Login extends Component {
         />
         <label htmlFor="password">Password</label>
         <input
-          type="text"
+          type="password"
           name="password"
           placeholder="Enter password"
           onChange={this.handleUpdate}

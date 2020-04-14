@@ -8,12 +8,28 @@
 }
 
 main {
+  height:100%;
   width:100%;
-  height:100vh;
+
+  header {
+    background-color: #fff;
+    position: sticky;
+    top: 0px;
+    z-index: 9999;
+  }
 
   .margin-wrap {
     margin:0 auto;
     max-width:1500px;
     width:100%;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .movie-details-card {
+
+    .movie-images {
+      margin-top:0px !important;
+    }
   }
 }
