@@ -44,7 +44,7 @@ class MovieDetails extends Component {
 
   displayUserRatingConditional = () => {
     if(this.props.userInfo.id){
-      return `Your rating: ${this.showUserRating()}`
+      return this.showUserRating();
     }
   }
 
@@ -102,24 +102,24 @@ class MovieDetails extends Component {
     if (title) {
       return (
         <article className="movie-details-card">
-        <section className="movie-images">
-        <img src={poster_path} alt={"poster for " + title}/>
-        <img src={backdrop_path} alt={"background for " + title}/>
-        </section>
-        <section className="movie-details">
-        <section>
-        <h1>{title}</h1>
-        <h3>Average rating: {average_rating && average_rating.toFixed(1)}/10</h3>
-        <h3>{this.displayUserRatingConditional()}</h3>
-        </section>
-        <section>
-        <h3>Release date: {release_date}</h3>
-        </section>
-        <section>
-        {overview}
-        </section>
-        {this.checkIfLoggedIn()}
-        </section>
+          <section className="movie-images">
+            <img src={poster_path} alt={"poster for " + title}/>
+            <img src={backdrop_path} alt={"background for " + title}/>
+          </section>
+          <section className="movie-details">
+            <section>
+              <h1>{title}</h1>
+              <h3 className="average-rating">Average rating: <span>{average_rating && average_rating.toFixed(1)}/10</span></h3>
+
+              {this.props.userInfo.id && <h3 className="user-rating">Your rating: <span>{this.displayUserRatingConditional()}</span></h3>}
+
+              <h3>Release date: <span>{release_date}</span></h3>
+            </section>
+            <section>
+              {overview}
+            </section>
+            {this.checkIfLoggedIn()}
+          </section>
         </article>)
       } else {
         return (
