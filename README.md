@@ -21,7 +21,7 @@ If a user is not logged in, they can still view movies and the average ratings f
 
 #### In Action
 ![Gif of app](https://i.imgur.com/zl7lEoN.gif)
-![Gif of app](https://user-images.githubusercontent.com/15935329/79283764-08f90680-7e76-11ea-9b96-b24b1ca07e33.gif)
+![Gif of app](https://user-images.githubusercontent.com/15935329/79283989-ace2b200-7e76-11ea-843d-dd9b8da63b44.gif)
 
 #### Technologies Used
 Development: Redux, React.js, Scss/Sass
