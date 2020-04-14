@@ -1,13 +1,13 @@
 header {
-  width:100%;
   padding:10px 20px;
+  width:100%;
   @include dropShadow;
 
   .margin-wrap {
+    align-items: center;
     display: flex;
     flex-flow:wrap;
     justify-content: space-between;
-    align-items: center;
 
     .logo {
       width:250px;

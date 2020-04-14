@@ -1,7 +1,7 @@
 .movie-container {
+  column-gap: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 2% 3%;
   width: 100%;
-  column-gap: 20px;
 }
