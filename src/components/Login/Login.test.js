@@ -48,16 +48,4 @@ describe('Login', () => {
     expect(passwordInputElement.value).toBe("password1");
   })
 
-  //* test can be used in future when displaying bad credentials if worng login is used *//
-  // it("should give error when entering wrong credentials", () => {
-  //   const { getByText, getByPlaceholderText } = mockRender;
-  //
-  //   const emailInputElement = getByPlaceholderText("enter email");
-  //   const passwordInputElement = getByPlaceholderText("enter password");
-  //
-  //   fireEvent.change(emailInputElement, {target: {value: "Yoo@email.com"}});
-  //   fireEvent.change(passwordInputElement, {target: {value: "password1"}});
-  //   fireEvent.click(getByText("Submit Login"));
-  // })
-
 })

@@ -13,6 +13,12 @@ class MovieDetails extends Component {
     }
   }
 
+  componentDidMount = () => {
+    this.props.userInfo.id
+      && apiFetchRatings(this.props.userInfo.id)
+          .then(data => this.props.fetchUserRatings(data.ratings))
+  }
+
   submitNewRating = (e) => {
     e.preventDefault();
     const userId = this.props.userInfo.id;
@@ -92,7 +98,7 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { id, title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
+    const { title, backdrop_path, poster_path, release_date, overview, average_rating } = this.props;
     if (title) {
       return (
         <article className="movie-details-card">

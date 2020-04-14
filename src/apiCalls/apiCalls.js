@@ -7,7 +7,7 @@ const RATINGS_ENDPOINT = '/ratings/';
 export const apiFetchMovies = async () => {
   return await fetch(BASE_URL + MOVIES_ENDPOINT)
     .then(response => response.json())
-      .catch(err => console.log(err.message))
+      // .catch(err => console.log(err.message))
 }
 
 export const apiFetchUserData = async (email, password) => {

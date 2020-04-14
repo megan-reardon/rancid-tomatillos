@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class MovieCard extends Component {
-  constructor() {
-    super();
-  }
 
   render() {
     const { id, title, backdrop, averageRating, userRating, userInfo } = this.props;
@@ -21,7 +18,10 @@ class MovieCard extends Component {
 
     return (
       <article className="movie-card">
-        <Link to={`/movies/${id}`}>
+        <Link
+          to={`/movies/${id}`}
+          data-testid={`movie-${id}`}
+        >
           <img src={backdrop} alt={"image for " + title}/>
           <div className="movie-info-container">
           <h1>{title}</h1>

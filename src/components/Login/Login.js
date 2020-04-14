@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Router, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { login, getRatings } from '../../actions';
 import PropTypes from 'prop-types';
 
@@ -32,9 +32,9 @@ class Login extends Component {
           return response.json()
             .then(info => loginUser(info.user))
             .then(data => {
-              apiFetchRatings(this.props.userInfo.id)
+                apiFetchRatings(this.props.userInfo.id)
                 .then(data => this.props.fetchUserRatings(data.ratings))
-                .then(info => this.props.history.push('/'));
+                .then(info => this.props.history.push('/'))
             })
         } else {
           return response.json()
@@ -55,7 +55,7 @@ class Login extends Component {
       /^(([^<>()\[\]\.,;:\s@\']+(\.[^<>()\[\]\.,;:\s@\']+)*)|(\'.+\'))@(([^<>()[\]\.,;:\s@\']+\.)+[^<>()[\]\.,;:\s@\']{2,})$/i
     );
 
-    const validEmail = email != '' && validEmailRegex.test(email);
+    const validEmail = email !== '' && validEmailRegex.test(email);
     const validPassword = password !== '';
 
     if (validEmail && validPassword) {
@@ -66,7 +66,6 @@ class Login extends Component {
   }
 
   render() {
-    const isEnabled = this.validateForm();
     return(
     <section className="login-container">
       <form>
