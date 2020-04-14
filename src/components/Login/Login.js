@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { login, getRatings } from '../../actions';
+import PropTypes from 'prop-types';
 
 import { apiFetchUserData, apiFetchRatings } from '../../apiCalls/apiCalls';
 
@@ -92,6 +93,13 @@ class Login extends Component {
       </form>
     </section>)
   }
+}
+
+Login.propTypes = {
+  loginUser: PropTypes.func,
+  fetchUserRatings: PropTypes.func,
+  userInfo: PropTypes.object,
+  history: PropTypes.object
 }
 
 const mapDispatchToProps = (dispatch) => ({

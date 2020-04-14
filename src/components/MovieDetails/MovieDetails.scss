@@ -36,7 +36,6 @@ a {
     border-bottom: 1px solid $light-gray;
     padding: 5px 10px;
     height: 40px;
-    width: 40px;
     font-size: 1em;
     font-weight: bold;
   }
@@ -52,6 +51,14 @@ a {
   grid-template-columns: 1fr 2fr;
 }
 
+.movie-details-error {
+  margin: 10em 3em 0em 3em;
+  h1 {
+    text-align: center;
+    font-size: 3em;
+  }
+}
+
 .movie-images {
   display: flex;
   justify-content: center;
@@ -64,8 +71,7 @@ a {
   }
   img:nth-child(2) {
     position: absolute;
-    background-position: center;
-    background-size: cover;
+    object-fit: cover;
     width: 100%;
     height: 100%;
     top: 6em;
