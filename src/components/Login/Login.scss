@@ -1,19 +1,19 @@
 .login-container {
-  height:100vh;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height:100vh;
+  justify-content: center;
   margin-top:-100px;
 
   form {
     @include dropShadow;
-    width:100%;
+    display: flex;
+    flex-direction:column;
+    flex-flow:wrap;
     max-width:350px;
     padding:30px 50px;
-    display: flex;
-    flex-flow:wrap;
-    flex-direction:column;
     text-align: center;
+    width:100%;
 
     h1{
       margin-bottom:20px;
@@ -31,18 +31,18 @@
     }
 
     input {
-      text-align:center;
       border:0;
       border-bottom:1px solid $light-gray;
+      font-size:1.025rem;
       margin-bottom:20px;
       padding:5px 10px;
-      font-size:1.025rem;
+      text-align:center;
     }
 
     button {
       @include buttonStyle;
-      margin-top:20px;
       align-self:center;
+      margin-top:20px;
     }
   }
 }
