@@ -15,9 +15,12 @@ If a user is not logged in, they can still view movies and the average ratings f
 
 [Cristina Peña](https://github.com/CLPena)
 
+#### Screenshots
+![Dashboard](https://i.imgur.com/5ujLRlK.jpg)
+![Details Page](https://i.imgur.com/QBjIrz9.png)
 
 #### In Action
-![Gif of app](url goes here)
+![Gif of app](https://i.imgur.com/zl7lEoN.gif)
 
 #### Technologies Used
 Development: Redux, React.js, Scss/Sass
