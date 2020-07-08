@@ -15,6 +15,9 @@ If a user is not logged in, they can still view movies and the average ratings f
 
 [Cristina Peña](https://github.com/CLPena)
 
+### Deployed App
+[Rancid Tomatillos](https://rancid-tomatillos.netlify.app/)
+
 #### Screenshots
 ![Dashboard](https://i.imgur.com/5ujLRlK.jpg)
 ![Details Page](https://i.imgur.com/QBjIrz9.png)
